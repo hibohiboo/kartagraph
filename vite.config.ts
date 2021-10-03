@@ -8,6 +8,7 @@ export default defineConfig({
   // comment this out if that isn't relevant for your project
   build: {
     outDir: 'build',
+    sourcemap: true,
   },
   plugins: [reactRefresh()],
   root: 'client',
@@ -18,6 +19,5 @@ export default defineConfig({
       { find: 'react-native', replacement: 'react-native-web' },
     ],
   },
-
   base: `/${basePath}/`,
 })

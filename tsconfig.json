@@ -25,6 +25,8 @@
     },
   },
   "include": [
+    ".storybook",
     "client/src",
-    "client/tests" ]
+    "client/tests" ],
+    "exclude": ["node_modules"]
 }
