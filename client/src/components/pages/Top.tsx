@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 const Top: React.FC = () => (
   <Container>
-    <Text>hellow</Text>
+    <Text>hello top</Text>
     <Link to="about">test</Link>
   </Container>
 )
