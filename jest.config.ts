@@ -13,6 +13,7 @@ export default async (): Promise<Config.InitialOptions> => {
       '^@/(.*)$': '<rootDir>/src/$1',
       '\\.(css|scss|svg)$': '<rootDir>/__mocks__/styleMock.js',
       // '^react(.*)$': '<rootDir>/../node_modules/react$1',
+      '^react-native$': 'react-native-web',
     },
     testEnvironment: 'jsdom',
     setupFilesAfterEnv: ['<rootDir>/tests/setupTests.ts'],

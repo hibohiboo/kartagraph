@@ -13,7 +13,10 @@ export default defineConfig({
   root: 'client',
   resolve: {
     // viteのホットリロードのために、/で始める必要がある。
-    alias: [{ find: '@', replacement: '/src' }],
+    alias: [
+      { find: '@', replacement: '/src' },
+      { find: 'react-native', replacement: 'react-native-web' },
+    ],
   },
 
   base: `/${basePath}/`,
