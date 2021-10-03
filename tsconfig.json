@@ -8,7 +8,7 @@
       "ESNext"
     ],
     "allowJs": false,
-    "skipLibCheck": false,
+    "skipLibCheck": true, // react native で declare が被るためスキップする
     "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
     "strict": true,
@@ -28,6 +28,5 @@
     ".storybook",
     "client/src",
     "client/stories",
-    "client/tests" ],
-    "exclude": ["node_modules"]
+    "client/tests" ]
 }

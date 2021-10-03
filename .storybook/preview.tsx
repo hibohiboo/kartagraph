@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router'
 import { addDecorator } from '@storybook/react'
 import { Parameters } from '@storybook/addons'
 
-// addDecorator((storyFn) => <MemoryRouter>{storyFn()}</MemoryRouter>)
+addDecorator((storyFn) => <MemoryRouter>{storyFn()}</MemoryRouter>)
 
 export const parameters: Parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },

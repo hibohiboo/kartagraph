@@ -3,8 +3,13 @@ import { StyleSheet, View } from 'react-native'
 
 const Container: React.FC = ({ children }) => {
   return (
-    <View style={[styles.wrapper, { flexDirection: 'column' }]}>
-      <View style={styles.container}>{children}</View>
+    <View
+      style={[styles.wrapper, { flexDirection: 'column' }]}
+      nativeID={'cg-wrapper'}
+    >
+      <View style={styles.container} nativeID="cg-container">
+        {children}
+      </View>
     </View>
   )
 }
