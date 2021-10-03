@@ -14,8 +14,8 @@ interface CustomizedStorybookConfig extends Weaken<StorybookConfig, 'core'> {
 
 const config: CustomizedStorybookConfig = {
   stories: [
-    '../stories/**/*.stories.mdx',
-    '../stories/**/*.stories.@(js|jsx|ts|tsx)',
+    '../client/stories/**/*.stories.mdx',
+    '../client/stories/**/*.stories.@(js|jsx|ts|tsx)',
   ],
   addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
   core: {

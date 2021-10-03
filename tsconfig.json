@@ -27,6 +27,7 @@
   "include": [
     ".storybook",
     "client/src",
+    "client/stories",
     "client/tests" ],
     "exclude": ["node_modules"]
 }
