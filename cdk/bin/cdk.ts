@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import 'source-map-support/register'
 import * as cdk from '@aws-cdk/core'
-import { AWSLosTRPGClientStack } from '../lib/cdk-stack'
+import { AWSCarTaGraphClientStack } from '../lib/cdk-stack'
 import * as dotenv from 'dotenv'
 
 // typescriptで予測が効かずにundefinedがとれない
@@ -24,7 +24,7 @@ const env = {
 }
 const projectId = process.env.PROJECT_ID
 
-new AWSLosTRPGClientStack(app, `${projectId}-stack`, {
+new AWSCarTaGraphClientStack(app, `${projectId}-stack`, {
   bucketName: `${projectId}-s3-bucket`,
   identityName: `${projectId}-origin-access-identity-to-s3-bucket`,
   defaultCachePolicyName: `${projectId}-cache-policy-default`,

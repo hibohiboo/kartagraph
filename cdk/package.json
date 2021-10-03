@@ -9,9 +9,8 @@
     "watch": "tsc -w",
     "cdk": "cdk",
     "bundle": "cdk synth > cdk.out/template.yml",
-    "pipeline-deploy": "cdk deploy --require-approval never",
-    "predeploy": "node build.js",
-    "deploy": "cdk deploy --profile produser --require-approval never --all"
+    "pipeline-deploy": "cdk deploy --require-approval never --all",
+    "deploy": "cdk deploy --profile produser"
   },
   "devDependencies": {
     "@aws-cdk/assert": "1.125.0",

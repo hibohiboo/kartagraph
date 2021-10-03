@@ -22,7 +22,7 @@ interface Props extends core.StackProps {
   projectNameTag: string
 }
 
-export class AWSLosTRPGClientStack extends core.Stack {
+export class AWSCarTaGraphClientStack extends core.Stack {
   constructor(scope: core.Construct, id: string, props: Props) {
     super(scope, id, props)
     // CloudFront オリジン用のS3バケットを作成
@@ -31,8 +31,6 @@ export class AWSLosTRPGClientStack extends core.Stack {
     const identity = this.createIdentity(bucket, props.identityName)
     // S3バケットポリシーで、CloudFrontのオリジンアクセスアイデンティティを許可
     this.createPolicy(bucket, identity)
-    // lambda edge作成
-    const f = this.createLambdaEdge(props.functionName)
 
     const zone = this.findRoute53HostedZone(props.rootDomain)
     const cert = this.createTLSCertificate(props.deployDomain, zone)
@@ -40,7 +38,6 @@ export class AWSLosTRPGClientStack extends core.Stack {
     const distribution = this.createCloudFront(
       bucket,
       identity,
-      f,
       cert,
       props.defaultCachePolicyName,
       props.imageCachePolicyName,
@@ -102,7 +99,6 @@ export class AWSLosTRPGClientStack extends core.Stack {
   private createCloudFront(
     bucket: s3.Bucket,
     identity: cf.OriginAccessIdentity,
-    f: cf.experimental.EdgeFunction,
     cert: certManager.DnsValidatedCertificate,
     defaultCachePolicyName: string,
     imageCachePolicyName: string,
@@ -151,30 +147,11 @@ export class AWSLosTRPGClientStack extends core.Stack {
         cachePolicy: myCachePolicy,
         viewerProtocolPolicy: cf.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
       },
-      additionalBehaviors: {
-        'cartagraph/*': {
-          origin,
-          viewerProtocolPolicy: cf.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
-          edgeLambdas: [
-            {
-              eventType: cf.LambdaEdgeEventType.VIEWER_REQUEST,
-              functionVersion: f.currentVersion,
-              includeBody: true,
-            },
-          ],
-        },
-        data: {
-          origin,
-          cachePolicy: imgCachePolicy,
-          allowedMethods: cf.AllowedMethods.ALLOW_GET_HEAD_OPTIONS,
-          viewerProtocolPolicy: cf.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
-        },
-      },
       errorResponses: [
         {
           httpStatus: 404,
           responseHttpStatus: 200,
-          responsePagePath: '/cartragraph/index.html',
+          responsePagePath: '/cartagraph/index.html',
           ttl: core.Duration.seconds(0),
         },
         {
@@ -213,15 +190,6 @@ export class AWSLosTRPGClientStack extends core.Stack {
         destinationKeyPrefix: basePath,
       },
     )
-  }
-
-  private createLambdaEdge(functionName: string) {
-    const f = new cf.experimental.EdgeFunction(this, functionName, {
-      code: lambda.Code.fromAsset('dist/ogp'),
-      handler: 'index.handler',
-      runtime: lambda.Runtime.NODEJS_14_X,
-    })
-    return f
   }
 
   private findRoute53HostedZone(rootDomain: string) {
