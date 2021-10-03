@@ -6,10 +6,13 @@ import { Link } from 'react-router-dom'
 const About: React.FC = ({ children }) => (
   <Container>
     <View>
-      <Text>hellow</Text>
-      <Link to="/">top</Link>
+      <Text style={styles.text}>hellow</Text>
     </View>
   </Container>
 )
+
+const styles = StyleSheet.create({
+  text: { color: '#eee' },
+})
 
 export default About

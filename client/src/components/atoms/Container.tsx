@@ -10,7 +10,7 @@ const Container: React.FC = ({ children }) => {
 }
 
 const styles = StyleSheet.create({
-  wrapper: { flex: 1 },
+  wrapper: { flex: 1, height: '100vh' },
   container: {
     flex: 1,
     alignItems: 'center',
