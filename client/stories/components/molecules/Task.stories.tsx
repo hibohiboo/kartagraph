@@ -1,10 +1,10 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-import Task from '@/components/tutorial/atoms/Task'
+import Task from '@/components/tutorial/molecules/Task'
 
 export default {
   component: Task,
-  title: 'Tutorial/Atoms/Task',
+  title: 'Tutorial/Molecules/Task',
 } as ComponentMeta<typeof Task>
 
 const Template: ComponentStory<typeof Task> = (args) => <Task {...args} />
