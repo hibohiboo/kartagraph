@@ -1,9 +1,10 @@
 import type { CSSProperties } from 'react'
 
 export const defaultBgColor = 'black'
+export const defaultColor = '#eee'
 export const defaultLink: CSSProperties = {
   textDecoration: 'none',
-  color: '#fff',
+  color: defaultColor,
 } as const
 export const defaultBody: CSSProperties = {
   height: '100%',
@@ -17,7 +18,7 @@ export const defaultBody: CSSProperties = {
   justifyContent: 'center',
   // font
   backgroundColor: defaultBgColor,
-  color: '#eee',
+  color: defaultColor,
   fontFamily:
     "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen','Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',sans-serif",
   // fontSmooth: 'antialiased', Mac のみなので使わない。
