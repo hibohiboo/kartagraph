@@ -32,6 +32,9 @@ const TopBase: React.FC<{ content: ReactElement }> = ({ content }) => (
       >
         <div>© hibohiboo. All rights.</div>
         <div>
+          <Link style={defaultLink} to="/">
+            TOP
+          </Link>{' '}
           <Link style={defaultLink} to="/privacy">
             プライバシーポリシー
           </Link>{' '}
