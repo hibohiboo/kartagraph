@@ -13,7 +13,7 @@ const Agreement: React.FC = ({ children }) => (
           backgroundColor: defaultBgColor,
         }}
       >
-        <div style={{ width: '95%', padding: '10px' }}>
+        <div style={{ padding: '10px' }}>
           <h1>利用規約</h1>
           <h2>ユーザーの皆さまへ</h2>
           <p>

@@ -9,7 +9,8 @@ const ScrollableBox: React.FC<{ style?: CSSProperties }> = ({
       ...style,
       height: '100%',
       width: '100%',
-      overflow: 'auto',
+      overflowY: 'auto',
+      overflowX: 'hidden',
       position: 'relative',
     }}
   >

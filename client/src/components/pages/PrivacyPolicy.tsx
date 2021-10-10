@@ -13,7 +13,7 @@ const PrivacyPolicy: React.FC = ({ children }) => (
           backgroundColor: defaultBgColor,
         }}
       >
-        <div style={{ width: '95%', padding: '10px' }}>
+        <div style={{ padding: '10px' }}>
           <h1>プライバシーポリシー</h1>
           <h2>プライバシー情報</h2>
           <p>
