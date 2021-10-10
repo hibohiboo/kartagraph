@@ -23,6 +23,7 @@
     "paths": {
       "@/*": ["./client/src/*"]
     },
+    "sourceMap": true
   },
   "include": [
     ".storybook",
