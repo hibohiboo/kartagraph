@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import reactRefresh from '@vitejs/plugin-react-refresh'
+import { basePath } from './cdk/constants/paths'
 
-export const basePath = 'cartagraph'
 // https://vitejs.dev/config/
 export default defineConfig({
   // This changes the out put dir from dist to build
