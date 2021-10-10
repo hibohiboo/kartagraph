@@ -5,12 +5,15 @@ interface Base {
   footer: ReactElement
   content: ReactElement
 }
-const css = {
+const headerHeight = 50
+const footerHeight = 80
+const css: Record<string, React.CSSProperties> = {
   body: {
     height: '100vh',
     width: '100vw',
+    overflow: 'hidden',
     margin: 0,
-    paddint: 0,
+    padding: 0,
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
@@ -23,11 +26,25 @@ const css = {
     // fontSmooth: 'antialiased', Mac のみなので使わない。
     // -moz-osx-font-smoothing: grayscale;'
   },
-  header: { backgroundColor: 'red', height: '50px', width: '100%' },
-  container: { backgroundColor: 'yellow', width: '100%', flexGrow: 1 },
+  header: {
+    backgroundColor: 'red',
+    height: `${headerHeight}px`,
+    width: '100%',
+    border: 'none',
+  },
+  container: {
+    backgroundColor: 'yellow',
+    width: '100%',
+    position: 'relative',
+    height: `calc(100vh - ${headerHeight + footerHeight}px)`,
+    flexGrow: 1,
+    border: 'none',
+    margin: 0,
+    padding: 0,
+  },
   footer: {
     backgroundColor: 'blue',
-    height: '80px',
+    height: `${footerHeight}px`,
     width: '100%',
     // display: 'flex',
     // justifyContent: 'space-around',

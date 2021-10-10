@@ -1,6 +1,8 @@
+import { defaultLink } from '@/constants/cssConst'
 import React, { ReactElement } from 'react'
 
 import { Link } from 'react-router-dom'
+
 const css: Record<string, React.CSSProperties> = {
   wrapper: {
     width: '100%',
@@ -12,8 +14,7 @@ const css: Record<string, React.CSSProperties> = {
     alignItems: 'center',
   },
   button: {
-    color: '#fff',
-
+    ...defaultLink,
     border: 'solid #fff 1px',
     boxSizing: 'border-box',
     width: '80px',
@@ -22,8 +23,6 @@ const css: Record<string, React.CSSProperties> = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-
-    textDecoration: 'none',
   },
 } as const
 const Footer: React.FC = ({ children }) => (
