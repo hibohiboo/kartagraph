@@ -26,7 +26,10 @@ steps:
     path: $(npm_config_cache)
   displayName: Cache npm
 
-- script: npm ci
+- task: Npm@1
+  inputs:
+    command: 'ci'
+  displayName: 'npm install'
 
 - script: |
     npm run build
@@ -34,10 +37,10 @@ steps:
 
 - script: |
     rm -rf node_modules
-  displayName: 'npm install and build'
+  displayName: 'delete files'
 
-- task: PublishBuildArtifacts@1
+- task: PublishPipelineArtifact@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+    targetPath: '$(Pipeline.Workspace)'
+    artifact: 'drop'
+    publishLocation: 'pipeline'
