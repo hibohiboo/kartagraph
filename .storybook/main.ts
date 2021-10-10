@@ -30,7 +30,7 @@ const config: CustomizedStorybookConfig = {
     // customize the Vite config here
     config.resolve.alias = [
       { find: '@', replacement: '/src' },
-      { find: 'react-native', replacement: 'react-native-web' },
+      // { find: 'react-native', replacement: 'react-native-web' },
     ]
     config.root = 'client'
     config.plugins = [...config.plugins]

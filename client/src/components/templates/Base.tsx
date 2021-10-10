@@ -1,3 +1,4 @@
+import { defaultBody } from '@/constants/cssConst'
 import React, { ReactElement } from 'react'
 
 interface Base {
@@ -9,22 +10,11 @@ const headerHeight = 50
 const footerHeight = 80
 const css: Record<string, React.CSSProperties> = {
   body: {
+    ...defaultBody,
     height: '100vh',
     width: '100vw',
     overflow: 'hidden',
-    margin: 0,
-    padding: 0,
-    position: 'relative',
-    display: 'flex',
-    alignItems: 'center',
     flexDirection: 'column',
-    // font
-    backgroundColor: 'black',
-    color: '#eee',
-    fontFamily:
-      "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen','Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',sans-serif;",
-    // fontSmooth: 'antialiased', Mac のみなので使わない。
-    // -moz-osx-font-smoothing: grayscale;'
   },
   header: {
     backgroundColor: 'red',

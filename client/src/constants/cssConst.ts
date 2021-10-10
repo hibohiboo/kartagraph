@@ -19,7 +19,7 @@ export const defaultBody: CSSProperties = {
   backgroundColor: defaultBgColor,
   color: '#eee',
   fontFamily:
-    "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen','Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',sans-serif;",
+    "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen','Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',sans-serif",
   // fontSmooth: 'antialiased', Mac のみなので使わない。
   // -moz-osx-font-smoothing: grayscale;'
 } as const

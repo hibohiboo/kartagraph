@@ -6,6 +6,6 @@ import { MemoryRouter } from 'react-router-dom'
 test('renders save to reload', () => {
   // https://zenn.dev/tatsurom/articles/9a0341cd3a357a3c55db
   render(<Top />, { wrapper: MemoryRouter })
-  const linkElement = screen.getByText(/hello top/i)
+  const linkElement = screen.getByText(/カルタグラフ/i)
   expect(linkElement).toBeInTheDocument()
 })
