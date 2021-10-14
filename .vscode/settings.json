@@ -19,5 +19,8 @@
   // デフォルトの設定はオフにしておく
   "typescript.format.enable": false,
   "javascript.format.enable": false,
-  "liveServer.settings.port": 5502
+  "liveServer.settings.port": 5502,
+  "markdown.styles": [
+    "https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+  ]
 }
