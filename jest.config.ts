@@ -5,7 +5,7 @@ export default async (): Promise<Config.InitialOptions> => {
     preset: 'ts-jest',
     rootDir: './client',
     roots: ['<rootDir>/src', '<rootDir>/tests'],
-    testMatch: ['**/*.test.ts', '**/*.test.tsx'],
+    testMatch: ['**/*.test.ts', '**/*.test.tsx', '**/**/*.test.ts'],
     transform: {
       '^.+\\.tsx?$': 'ts-jest',
     },
