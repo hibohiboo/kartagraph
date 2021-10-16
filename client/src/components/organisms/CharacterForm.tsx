@@ -1,47 +1,36 @@
 import React from 'react'
+import type { SaveCharacter } from '@/domain/character'
 import { useForm } from 'react-hook-form'
 
-export default function CharacterForm({}) {
+export default function CharacterForm({
+  saveCharacter,
+}: {
+  saveCharacter: SaveCharacter
+}) {
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
   } = useForm()
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: { name: string }) => {
     console.log('data', data)
+    saveCharacter(data.name)
     reset()
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <label htmlFor="email">email</label>
+      <label htmlFor="name">キャラクター名</label>
       <input
-        id="email"
-        {...register('email', {
+        id="name"
+        {...register('name', {
           required: 'required',
-          pattern: {
-            value: /\S+@\S+\.\S+/,
-            message: 'Entered value does not match email format',
-          },
         })}
-        type="email"
+        type="text"
       />
-      {errors.email && <span role="alert">{errors.email.message}</span>}
-      <label htmlFor="password">password</label>
-      <input
-        id="password"
-        {...register('password', {
-          required: 'required',
-          minLength: {
-            value: 5,
-            message: 'min length is 5',
-          },
-        })}
-        type="password"
-      />
-      {errors.password && <span role="alert">{errors.password.message}</span>}
-      <button type="submit">SUBMIT</button>
+      {errors.name && <span role="alert">{errors.name.message}</span>}
+      <button type="submit">登録</button>
     </form>
   )
 }
