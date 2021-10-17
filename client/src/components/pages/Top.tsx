@@ -3,6 +3,8 @@ import React from 'react'
 
 import { Link } from 'react-router-dom'
 import TopBase from '../templates/TopBase'
+import { charactersSelector } from '@/store/selectors/characters'
+import { useAppSelector } from '@/store/hooks'
 
 const css: Record<string, React.CSSProperties> = {
   body: defaultBody,
@@ -26,20 +28,23 @@ const css: Record<string, React.CSSProperties> = {
   },
 } as const
 
-const Top: React.FC = ({ children }) => (
-  <TopBase
-    content={
-      <div style={css.body}>
-        <div>
-          <span style={css.subtitle}>電脳ゲームブック</span>
-          <Link style={css.mainTitle} to="/game">
-            カルタグラフ
-          </Link>
-          {/* <span style={css.subtitle}>君だけの旅路</span> */}
+const Top: React.FC = ({ children }) => {
+  const characters = useAppSelector(charactersSelector)
+  const pagePath = characters.length === 0 ? '/first/1' : '/game'
+  return (
+    <TopBase
+      content={
+        <div style={css.body}>
+          <div>
+            <span style={css.subtitle}>電脳ゲームブック</span>
+            <Link style={css.mainTitle} to={pagePath}>
+              カルタグラフ
+            </Link>
+            {/* <span style={css.subtitle}>君だけの旅路</span> */}
+          </div>
         </div>
-      </div>
-    }
-  />
-)
-
+      }
+    />
+  )
+}
 export default Top

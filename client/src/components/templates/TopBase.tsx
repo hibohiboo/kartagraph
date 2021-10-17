@@ -2,19 +2,12 @@ import { defaultBgColor, defaultLink } from '@/constants/cssConst'
 import React, { ReactElement } from 'react'
 
 import { Link } from 'react-router-dom'
+import { DefaultDiv } from '../atoms/DefaultDiv'
 import Base from '../templates/Base'
 
 const TopBase: React.FC<{ content: ReactElement }> = ({ content }) => (
   <Base
-    header={
-      <div
-        style={{
-          backgroundColor: defaultBgColor,
-          width: '100%',
-          height: '100%',
-        }}
-      />
-    }
+    header={<DefaultDiv />}
     content={content}
     footer={
       <div

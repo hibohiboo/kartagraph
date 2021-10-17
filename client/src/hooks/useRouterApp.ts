@@ -8,6 +8,7 @@ import { auth } from '@/domain/firebase'
 
 const useRouterApp = () => {
   const authenticated = useAppSelector(isUserAuthenticatedSelector)
+
   const dispatch = useDispatch()
 
   const refresh = React.useCallback(
