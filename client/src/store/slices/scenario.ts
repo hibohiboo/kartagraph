@@ -21,7 +21,7 @@ export const scenarioSlice = createSlice({
     setCommands: (state, action: PayloadAction<Command[]>) => {
       state.commandQueue = action.payload
       state.currentCommand = 0
-      state.currentStatus = eventStatus.Wait
+      state.currentStatus = eventStatus.Executing
     },
     nextCommand: (state) => {
       if (state.currentCommand == null) {

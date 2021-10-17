@@ -6,6 +6,8 @@ import { defaultBgColor } from '@/constants/cssConst'
 import useScenario from '@/hooks/useScenario'
 import { isTextCommand } from '@/domain/command'
 import Loading from '../atoms/Loading'
+import { replaceText } from '@/domain/command/text'
+import TextViewer from '../organisms/game/TextViewer'
 
 const Header: React.FC<{}> = () => (
   <div
@@ -32,21 +34,7 @@ const Game: React.FC = ({ children }) => {
       <Base
         header={<Header />}
         footer={<Footer />}
-        content={
-          <div
-            style={{
-              backgroundColor: defaultBgColor,
-              height: '100%',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              whiteSpace: 'pre-wrap',
-            }}
-            onClick={next}
-          >
-            {command.value}
-          </div>
-        }
+        content={<TextViewer command={command} next={next} />}
       />
     )
   }

@@ -2,20 +2,19 @@ import { commandType } from '../command/constants'
 
 export const commandQueue = [
   {
-    name: 'テスト2',
-    type: commandType.Text,
-    value: 'ぎし、と鳴る扉を開く。酒場の娘はキミに声をかけた。',
-  },
-  {
     name: 'テスト1',
     type: commandType.Text,
-    value: `「いらっしゃいませ。
-初めての方ですね」`,
+    value: '名前を告げると、酒場の娘はさらさらと宿帳に記入する。',
   },
   {
     name: 'テスト2',
     type: commandType.Text,
-    value: `「宿帳に記入をお願いします。
-まずは、Fランクからのスタートになります」`,
+    value: `「$??Character1$さんですね。
+    まずは、Fランクからのスタートになります」`,
+  },
+  {
+    name: 'テスト3',
+    type: commandType.Text,
+    value: `「」`,
   },
 ]

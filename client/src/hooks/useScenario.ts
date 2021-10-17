@@ -18,16 +18,18 @@ const useScenario = () => {
   const readFirstScenario = React.useCallback(async () => {
     dispatch(setCommands(commandQueue))
   }, [dispatch])
-  const next = React.useCallback(async () => {
-    dispatch(nextCommand())
-    console.log('test', command)
-  }, [dispatch])
-
-  useEffect(() => {
-    if (command?.type === commandType.Text) {
-      dispatch(toWait())
+  const next = async () => {
+    if (status === eventStatus.Wait) {
+      return
     }
-  }, [command])
+    dispatch(nextCommand())
+  }
+
+  // useEffect(() => {
+  //   if (command?.type === commandType.Text) {
+  //     dispatch(toWait())
+  //   }
+  // }, [command])
 
   useEffect(() => {
     readFirstScenario()

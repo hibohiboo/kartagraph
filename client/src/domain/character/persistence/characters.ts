@@ -8,9 +8,14 @@ export const initCharacters = () => {
   }
   return []
 }
-export const persistCharacters = (nextCharacters: Character[]) => {
+export const persistCharacters = (nextCharacters: {
+  characters: Character[]
+}) => {
   if (nextCharacters) {
-    localStorage.setItem('characters', JSON.stringify(nextCharacters))
+    localStorage.setItem(
+      'characters',
+      JSON.stringify(nextCharacters.characters),
+    )
     return
   }
   localStorage.removeItem('characters')
