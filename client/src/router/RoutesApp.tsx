@@ -18,7 +18,9 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Top />} />
-      <Route path="/game" element={<Game />} />
+      <Route path="/scenario">
+        <Route path=":id" element={<Game />} />
+      </Route>
       <Route path="/privacy" element={<PrivacyPolicy />} />
       <Route path="/agreement" element={<Agreement />} />
       <Route path="/first/*" element={<First />} />
