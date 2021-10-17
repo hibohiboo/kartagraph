@@ -34,7 +34,9 @@ export default function CharacterForm({
             type="text"
             className="input"
           />
-          {errors.name && <span role="alert">{errors.name.message}</span>}
+          {errors.name && errors.name.type === 'required' && (
+            <span role="alert">キャラクター名は必須です。</span>
+          )}
         </div>
       </div>
       <div className="field">

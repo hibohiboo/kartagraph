@@ -1,17 +1,12 @@
+import { persistCharacters } from '@/domain/character/persistence/characters'
 import { Middleware } from '@reduxjs/toolkit'
-import { RootState } from '..'
 
-const localStorageMiddleware: Middleware<{}, RootState> = (store) => (next) => (
-  action,
-) => {
-  const prevJwt = store.getState().auth.user.jwt
+const localStorageMiddleware: Middleware = (store) => (next) => (action) => {
+  const prevCharacters = store.getState().characters
   next(action)
-  const nextJwt = store.getState().auth.user.jwt
-  if (prevJwt === nextJwt) return
-  if (nextJwt) {
-    localStorage.setItem('jwt', nextJwt)
-    return
+  const nextCharacters = store.getState().characters
+  if (JSON.stringify(prevCharacters) !== JSON.stringify(nextCharacters)) {
+    persistCharacters(nextCharacters)
   }
-  localStorage.removeItem('jwt')
 }
 export default localStorageMiddleware

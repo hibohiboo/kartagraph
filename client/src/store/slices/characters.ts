@@ -1,12 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Character } from '@/domain/character/types'
+import { initCharacters } from '@/domain/character/persistence/characters'
 
 export interface CharactersState {
   characters: Character[]
 }
 
 const initialState: CharactersState = {
-  characters: [],
+  characters: initCharacters(),
 }
 
 export const charactersSlice = createSlice({

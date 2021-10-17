@@ -1,4 +1,5 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
+import localStorageMiddleware from './middleware/localStorageMiddleware'
 import { authSlice, charactersSlice } from './slices'
 
 export const store = configureStore({
@@ -6,6 +7,8 @@ export const store = configureStore({
     auth: authSlice.reducer,
     characters: charactersSlice.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(localStorageMiddleware),
 })
 
 export type AppDispatch = typeof store.dispatch
