@@ -36,13 +36,15 @@ const FirstNumber: React.FC = () => {
         <div style={centerStyle} onClick={nextPage}>
           ようこそカルタグラフへ。 <br />
           まずは最初のキャラクターを作成しましょう。
+          <br />
+          タップで進みます
         </div>
       )
     case 2:
       return (
         <div style={centerStyle}>
           <CharacterForm
-            saveCharacter={(name) =>
+            saveCharacter={(name) => {
               dispatch(
                 addNewCharacter({
                   name,
@@ -51,7 +53,8 @@ const FirstNumber: React.FC = () => {
                   ],
                 }),
               )
-            }
+              navigate('/scenario/firstScenario')
+            }}
           />
         </div>
       )
