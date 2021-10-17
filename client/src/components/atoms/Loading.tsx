@@ -6,7 +6,7 @@ const Loading: React.FC = () => (
     style={{
       backgroundColor: defaultBgColor,
       color: defaultColor,
-      height: '100%',
+      height: '100vh',
       width: '100%',
       display: 'flex',
       justifyContent: 'center',

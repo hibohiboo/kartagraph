@@ -21,16 +21,27 @@ export default function CharacterForm({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <label htmlFor="name">キャラクター名</label>
-      <input
-        id="name"
-        {...register('name', {
-          required: 'required',
-        })}
-        type="text"
-      />
-      {errors.name && <span role="alert">{errors.name.message}</span>}
-      <button type="submit">登録</button>
+      <div className="field">
+        <label className="label" htmlFor="name">
+          キャラクター名
+        </label>
+        <div className="control">
+          <input
+            id="name"
+            {...register('name', {
+              required: 'required',
+            })}
+            type="text"
+            className="input"
+          />
+          {errors.name && <span role="alert">{errors.name.message}</span>}
+        </div>
+      </div>
+      <div className="field">
+        <button type="submit" className="button is-primary">
+          登録
+        </button>
+      </div>
     </form>
   )
 }
