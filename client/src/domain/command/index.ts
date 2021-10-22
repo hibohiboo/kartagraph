@@ -1,5 +1,6 @@
 import { commandType } from './constants'
 import { Command, TextCommand } from './types'
+export * from './commandToStatus'
 
 export const isTextCommand = (command: Command): command is TextCommand =>
   command.type === commandType.Text

@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Command } from '@/domain/command/types'
 import { eventStatus, EventStatus } from '@/domain/scenario/constants'
+import { commandToStatus } from '@/domain/command'
 
 export interface ScenarioState {
   commandQueue: Command[]
@@ -11,7 +12,7 @@ export interface ScenarioState {
 export const initialState: ScenarioState = {
   commandQueue: [],
   currentCommand: undefined,
-  currentStatus: eventStatus.Wait,
+  currentStatus: eventStatus.SelectWait,
 }
 
 export const scenarioSlice = createSlice({
@@ -21,21 +22,23 @@ export const scenarioSlice = createSlice({
     setCommands: (state, action: PayloadAction<Command[]>) => {
       state.commandQueue = action.payload
       state.currentCommand = 0
-      state.currentStatus = eventStatus.Executing
+      state.currentStatus = commandToStatus(state.commandQueue[0])
     },
     nextCommand: (state) => {
       if (state.currentCommand == null) {
         throw Error('currentCommandがundefined')
       }
-      state.currentStatus = eventStatus.Executing
       if (state.currentCommand === state.commandQueue.length - 1) {
-        state.currentCommand = 0
+        // state.currentCommand = 0
         return
       }
       state.currentCommand++
+      state.currentStatus = commandToStatus(
+        state.commandQueue[state.currentCommand],
+      )
     },
     toWait: (state) => {
-      state.currentStatus = eventStatus.Wait
+      state.currentStatus = eventStatus.SelectWait
     },
   },
 })

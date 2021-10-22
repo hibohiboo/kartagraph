@@ -6,7 +6,6 @@ import { defaultBgColor } from '@/constants/cssConst'
 import useScenario from '@/hooks/useScenario'
 import { isTextCommand } from '@/domain/command'
 import Loading from '../atoms/Loading'
-import { replaceText } from '@/domain/command/text'
 import TextViewer from '../organisms/game/TextViewer'
 
 const Header: React.FC<{}> = () => (
@@ -28,7 +27,6 @@ const Game: React.FC = ({ children }) => {
   if (!command) {
     return <Loading />
   }
-  console.log('command', command)
   if (isTextCommand(command)) {
     return (
       <Base

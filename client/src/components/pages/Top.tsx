@@ -30,7 +30,7 @@ const css: Record<string, React.CSSProperties> = {
 
 const Top: React.FC = ({ children }) => {
   const characters = useAppSelector(charactersSelector)
-  const pagePath = characters.length === 0 ? '/first/1' : '/game'
+  const pagePath = characters.length === 0 ? '/first/1' : '/scenario/first'
   return (
     <TopBase
       content={

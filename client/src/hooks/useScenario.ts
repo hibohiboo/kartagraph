@@ -19,7 +19,7 @@ const useScenario = () => {
     dispatch(setCommands(commandQueue))
   }, [dispatch])
   const next = async () => {
-    if (status === eventStatus.Wait) {
+    if (status !== eventStatus.ClickWait) {
       return
     }
     dispatch(nextCommand())

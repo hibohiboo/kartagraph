@@ -1,7 +1,6 @@
-import Base from '@/components/templates/Base'
 import { defaultBgColor } from '@/constants/cssConst'
 import { replaceText } from '@/domain/command/text'
-import { Command, TextCommand } from '@/domain/command/types'
+import { TextCommand } from '@/domain/command/types'
 import React from 'react'
 
 const TextViewer: React.FC<{ command: TextCommand; next: any }> = ({

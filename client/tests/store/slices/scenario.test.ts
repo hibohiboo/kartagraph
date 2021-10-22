@@ -15,6 +15,7 @@ describe('setCommands', () => {
       ...initialState,
       commandQueue: [{ name, type: commandType.Text }],
       currentCommand: 0,
+      currentStatus: eventStatus.ClickWait,
     })
   })
 })
@@ -28,12 +29,13 @@ describe('nextCommand', () => {
       ...initialState,
       commandQueue,
       currentCommand: 0,
+      currentStatus: eventStatus.Executing,
     }
 
     expect(reducer(beforeState, nextCommand())).toEqual({
       ...beforeState,
       currentCommand: 1,
-      currentStatus: eventStatus.Executing,
+      currentStatus: eventStatus.ClickWait,
     })
   })
 })
@@ -53,7 +55,7 @@ describe('toWait', () => {
 
     expect(reducer(beforeState, toWait())).toEqual({
       ...beforeState,
-      currentStatus: eventStatus.Wait,
+      currentStatus: eventStatus.SelectWait,
     })
   })
 })
