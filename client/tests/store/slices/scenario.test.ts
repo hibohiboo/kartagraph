@@ -1,4 +1,5 @@
 import { commandType } from '@/domain/command/constants'
+import { Command } from '@/domain/command/types'
 import { eventStatus } from '@/domain/scenario/constants'
 import { initialState, scenarioSlice } from '@/store/slices/scenario'
 
@@ -36,6 +37,26 @@ describe('nextCommand', () => {
       ...beforeState,
       currentCommand: 1,
       currentStatus: eventStatus.ClickWait,
+    })
+  })
+  test('最後のコマンドは待機になること', () => {
+    const commandQueue: Command[] = [
+      { name: 'テスト1', type: commandType.Text },
+      { name: 'テスト2', type: commandType.Text },
+    ]
+    const beforeState = {
+      ...initialState,
+      commandQueue,
+      currentCommand: 1,
+      currentStatus: eventStatus.Executing,
+    }
+
+    expect(reducer(beforeState, nextCommand())).toEqual({
+      commandQueue: [
+        { name: commandType.SelectWait, type: commandType.SelectWait },
+      ],
+      currentCommand: 0,
+      currentStatus: eventStatus.SelectWait,
     })
   })
 })

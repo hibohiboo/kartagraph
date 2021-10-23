@@ -9,8 +9,11 @@ import { scenarioSlice } from '@/store/slices/scenario'
 import { commandQueue } from '@/domain/scenario/firstScenario'
 import { commandType } from '@/domain/command/constants'
 import { eventStatus } from '@/domain/scenario/constants'
+import { screenSlice } from '@/store/slices'
+import { isLinkCommand } from '@/domain/command'
 
 const { setCommands, nextCommand, toWait } = scenarioSlice.actions
+const { addLink } = screenSlice.actions
 const useScenario = () => {
   const command = useAppSelector(commandSelector)
   const status = useAppSelector(eventStatusSelector)
@@ -25,11 +28,18 @@ const useScenario = () => {
     dispatch(nextCommand())
   }
 
-  // useEffect(() => {
-  //   if (command?.type === commandType.Text) {
-  //     dispatch(toWait())
-  //   }
-  // }, [command])
+  useEffect(() => {
+    if (status === eventStatus.Executing) {
+      dispatch(nextCommand())
+    }
+  }, [status])
+
+  useEffect(() => {
+    if (!command) return
+    if (isLinkCommand(command)) {
+      dispatch(addLink(command))
+    }
+  }, [command])
 
   useEffect(() => {
     readFirstScenario()

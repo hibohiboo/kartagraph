@@ -1,12 +1,18 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
 import localStorageMiddleware from './middleware/localStorageMiddleware'
-import { authSlice, charactersSlice, scenarioSlice } from './slices'
+import {
+  authSlice,
+  charactersSlice,
+  scenarioSlice,
+  screenSlice,
+} from './slices'
 
 export const store = configureStore({
   reducer: {
     auth: authSlice.reducer,
     characters: charactersSlice.reducer,
     scenario: scenarioSlice.reducer,
+    screen: screenSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(localStorageMiddleware),

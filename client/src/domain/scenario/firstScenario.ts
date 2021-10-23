@@ -9,7 +9,9 @@ export const commandQueue = [
   {
     name: 'テスト2',
     type: commandType.Text,
-    value: `「$??Character1$さんですね。
+    value: `酒場の娘
+    
+「$??Character1$さんですね。
     まずは、Fランクからのスタートになります」`,
   },
   {
