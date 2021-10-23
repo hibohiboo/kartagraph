@@ -3,7 +3,7 @@ import { replaceText } from '@/domain/command/text'
 import { LinkCommand, TextCommand } from '@/domain/command/types'
 import React from 'react'
 
-const TextViewer: React.FC<{ texts: TextCommand[]; links: LinkCommand[] }> = ({
+const LinksViewer: React.FC<{ texts: TextCommand[]; links: LinkCommand[] }> = ({
   texts,
   links,
 }) => (
@@ -17,10 +17,14 @@ const TextViewer: React.FC<{ texts: TextCommand[]; links: LinkCommand[] }> = ({
       whiteSpace: 'pre-wrap',
     }}
   >
-    <div>{texts.map((command) => replaceText(command.value))}</div>
-    {links.map((command) => (
-      <div>{command.label}</div>
-    ))}
+    <div>
+      <div>{texts.map((command) => replaceText(command.value))}</div>
+      <div>
+        {links.map((command, i) => (
+          <div key={`${command.name}${i}`}>{command.label}</div>
+        ))}
+      </div>
+    </div>
   </div>
 )
-export default TextViewer
+export default LinksViewer

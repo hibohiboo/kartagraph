@@ -11,12 +11,15 @@ import { commandType } from '@/domain/command/constants'
 import { eventStatus } from '@/domain/scenario/constants'
 import { screenSlice } from '@/store/slices'
 import { isLinkCommand } from '@/domain/command'
+import { linksSelector, textsSelector } from '@/store/selectors/screen'
 
 const { setCommands, nextCommand, toWait } = scenarioSlice.actions
 const { addLink } = screenSlice.actions
 const useScenario = () => {
   const command = useAppSelector(commandSelector)
   const status = useAppSelector(eventStatusSelector)
+  const texts = useAppSelector(textsSelector)
+  const links = useAppSelector(linksSelector)
   const dispatch = useDispatch()
   const readFirstScenario = React.useCallback(async () => {
     dispatch(setCommands(commandQueue))
@@ -32,7 +35,7 @@ const useScenario = () => {
     if (status === eventStatus.Executing) {
       dispatch(nextCommand())
     }
-  }, [status])
+  }, [command])
 
   useEffect(() => {
     if (!command) return
@@ -45,7 +48,7 @@ const useScenario = () => {
     readFirstScenario()
   }, [])
 
-  return { command, next }
+  return { command, texts, links, status, next }
 }
 
 export default useScenario

@@ -9,6 +9,7 @@ export const isLinkCommand = (command: Command): command is LinkCommand =>
 export const isSelectWaitCommand = (
   command: Command,
 ): command is SelectWaitCommand => command.type === commandType.SelectWait
+
 export const commandFactory = (command: Command) => {
   if (isTextCommand(command)) {
     return command

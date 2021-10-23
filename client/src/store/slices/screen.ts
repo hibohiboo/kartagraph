@@ -23,6 +23,9 @@ export const screenSlice = createSlice({
     resetLinks: (state) => {
       state.links = []
     },
+    setText: (state, { payload }: PayloadAction<TextCommand>) => {
+      state.texts = [payload]
+    },
     addText: (state, { payload }: PayloadAction<TextCommand>) => {
       state.texts.push(payload)
     },
