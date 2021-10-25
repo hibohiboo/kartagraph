@@ -25,7 +25,14 @@ const Header: React.FC<{}> = () => (
 )
 
 const Game: React.FC = () => {
-  const { command, links, texts, status, next } = useScenario()
+  const {
+    command,
+    links,
+    texts,
+    status,
+    next,
+    linkClickHandler,
+  } = useScenario()
   if (!command || status === eventStatus.Executing) {
     return <Loading />
   }
@@ -43,7 +50,13 @@ const Game: React.FC = () => {
       <Base
         header={<Header />}
         footer={<Footer />}
-        content={<LinksViewer links={links} texts={texts} />}
+        content={
+          <LinksViewer
+            links={links}
+            texts={texts}
+            linkClickHandler={linkClickHandler}
+          />
+        }
       />
     )
   }

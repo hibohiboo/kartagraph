@@ -15,7 +15,7 @@ type ScenarioId = string
 export interface LinkCommand extends Command {
   label: string
   nextEvent: EventId
-  nextEventDeck?: EventDeckId
-  nextScenario: ScenarioId
+  // nextEventDeck?: EventDeckId
+  // nextScenario: ScenarioId
 }
 export interface SelectWaitCommand extends Command {}

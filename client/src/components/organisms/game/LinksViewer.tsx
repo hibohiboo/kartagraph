@@ -3,10 +3,11 @@ import { replaceText } from '@/domain/command/text'
 import { LinkCommand, TextCommand } from '@/domain/command/types'
 import React from 'react'
 
-const LinksViewer: React.FC<{ texts: TextCommand[]; links: LinkCommand[] }> = ({
-  texts,
-  links,
-}) => (
+const LinksViewer: React.FC<{
+  texts: TextCommand[]
+  links: LinkCommand[]
+  linkClickHandler: (id: string) => void
+}> = ({ texts, links, linkClickHandler }) => (
   <div
     style={{
       backgroundColor: defaultBgColor,
@@ -21,7 +22,11 @@ const LinksViewer: React.FC<{ texts: TextCommand[]; links: LinkCommand[] }> = ({
       <div>{texts.map((command) => replaceText(command.value))}</div>
       <div className="buttons">
         {links.map((command, i) => (
-          <button key={`${command.name}${i}`} className="button">
+          <button
+            key={`${command.name}${i}`}
+            className="button"
+            onClick={() => linkClickHandler(command.nextEvent)}
+          >
             {command.label}
           </button>
         ))}
