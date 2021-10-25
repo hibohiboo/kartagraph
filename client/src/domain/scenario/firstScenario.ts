@@ -4,15 +4,17 @@ export const commandQueue = [
   {
     name: 'テスト1',
     type: commandType.Text,
-    value: '名前を告げると、酒場の娘はさらさらと宿帳に記入する。',
-  },
-  {
-    name: 'テスト2',
-    type: commandType.Text,
     value: `酒場の娘
 
 「$??Character1$さんですね。
     まずは、Fランクからのスタートになります」`,
+  },
+  {
+    name: 'テスト2',
+    type: commandType.LinkCaption,
+    value: `これからどうしようか。
+
+    `,
   },
   {
     name: 'テスト3',

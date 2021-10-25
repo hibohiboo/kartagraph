@@ -6,6 +6,8 @@ export const isTextCommand = (command: Command): command is TextCommand =>
   command.type === commandType.Text
 export const isLinkCommand = (command: Command): command is LinkCommand =>
   command.type === commandType.Link
+export const isCaptionCommand = (command: Command): command is TextCommand =>
+  command.type === commandType.LinkCaption
 export const isSelectWaitCommand = (
   command: Command,
 ): command is SelectWaitCommand => command.type === commandType.SelectWait

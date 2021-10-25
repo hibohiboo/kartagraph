@@ -19,9 +19,11 @@ const LinksViewer: React.FC<{ texts: TextCommand[]; links: LinkCommand[] }> = ({
   >
     <div>
       <div>{texts.map((command) => replaceText(command.value))}</div>
-      <div>
+      <div className="buttons">
         {links.map((command, i) => (
-          <div key={`${command.name}${i}`}>{command.label}</div>
+          <button key={`${command.name}${i}`} className="button">
+            {command.label}
+          </button>
         ))}
       </div>
     </div>
