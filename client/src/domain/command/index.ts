@@ -1,5 +1,11 @@
 import { commandType } from './constants'
-import { Command, LinkCommand, SelectWaitCommand, TextCommand } from './types'
+import {
+  Command,
+  JumpCommand,
+  LinkCommand,
+  SelectWaitCommand,
+  TextCommand,
+} from './types'
 export * from './commandToStatus'
 
 export const isTextCommand = (command: Command): command is TextCommand =>
@@ -11,6 +17,9 @@ export const isCaptionCommand = (command: Command): command is TextCommand =>
 export const isSelectWaitCommand = (
   command: Command,
 ): command is SelectWaitCommand => command.type === commandType.SelectWait
+
+export const isJumpCommand = (command: Command): command is JumpCommand =>
+  command.type === commandType.Jump
 
 export const commandFactory = (command: Command) => {
   if (isTextCommand(command)) {

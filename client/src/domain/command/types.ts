@@ -11,11 +11,14 @@ export interface TextCommand extends Command {
 
 type EventId = string
 type EventDeckId = string
-type ScenarioId = string
-export interface LinkCommand extends Command {
-  label: string
+type ScenarioId = SVGAnimatedString
+export interface SelectWaitCommand extends Command {}
+export interface JumpCommand extends Command {
+  nextEvent: EventId
+}
+
+export interface LinkCommand extends JumpCommand {
   nextEvent: EventId
   // nextEventDeck?: EventDeckId
   // nextScenario: ScenarioId
 }
-export interface SelectWaitCommand extends Command {}

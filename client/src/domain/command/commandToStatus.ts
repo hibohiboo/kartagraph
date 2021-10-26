@@ -1,4 +1,9 @@
-import { isCaptionCommand, isLinkCommand, isTextCommand } from '.'
+import {
+  isCaptionCommand,
+  isJumpCommand,
+  isLinkCommand,
+  isTextCommand,
+} from '.'
 import { eventStatus } from '../scenario/constants'
 import { Command } from './types'
 
@@ -6,7 +11,11 @@ export const commandToStatus = (command: Command) => {
   if (isTextCommand(command)) {
     return eventStatus.ClickWait
   }
-  if (isLinkCommand(command) || isCaptionCommand(command)) {
+  if (
+    isLinkCommand(command) ||
+    isCaptionCommand(command) ||
+    isJumpCommand(command)
+  ) {
     return eventStatus.Executing
   }
 

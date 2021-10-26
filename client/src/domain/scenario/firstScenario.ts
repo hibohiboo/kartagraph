@@ -11,22 +11,9 @@ const commandQueue = [
     まずは、Fランクからのスタートになります」`,
   },
   {
-    name: 'テスト2',
-    type: commandType.LinkCaption,
-    value: `これからどうしようか。
-
-    `,
-  },
-  {
-    name: 'テスト3',
-    type: commandType.Link,
-    label: `貼り紙を見る`,
-    nextEvent: '張り紙',
-  },
-  {
-    name: 'テスト4',
-    type: commandType.Link,
-    label: `娘と話す`,
+    name: 'ジャンプ',
+    type: commandType.Jump,
+    nextEvent: 'second',
   },
 ]
 
