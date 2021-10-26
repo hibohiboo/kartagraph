@@ -1,12 +1,15 @@
 import { Tag } from '../tag/types'
-import { CommandType } from './constants'
+import type { CommandType, IconType } from './constants'
 
 export interface Command {
   type: CommandType
 }
 
 export interface TextCommand extends Command {
-  value: string
+  label: string
+}
+export interface IconTextCommand extends TextCommand {
+  icon: IconType
 }
 
 type EventId = string

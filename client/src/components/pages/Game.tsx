@@ -4,11 +4,16 @@ import Base from '../templates/Base'
 import Footer from '../molecules/Footer'
 import { defaultBgColor } from '@/constants/cssConst'
 import useScenario from '@/hooks/useScenario'
-import { isSelectWaitCommand, isTextCommand } from '@/domain/command'
+import {
+  isIconTextCommand,
+  isSelectWaitCommand,
+  isTextCommand,
+} from '@/domain/command'
 import Loading from '../atoms/Loading'
 import TextViewer from '../organisms/game/TextViewer'
 import LinksViewer from '../organisms/game/LinksViewer'
 import { eventStatus } from '@/domain/scenario/constants'
+import IconTextViewer from '../organisms/game/IconTextViewer'
 
 const Header: React.FC<{}> = () => (
   <div
@@ -42,6 +47,15 @@ const Game: React.FC = () => {
         header={<Header />}
         footer={<Footer />}
         content={<TextViewer command={command} next={next} />}
+      />
+    )
+  }
+  if (isIconTextCommand(command)) {
+    return (
+      <Base
+        header={<Header />}
+        footer={<Footer />}
+        content={<IconTextViewer command={command} next={next} />}
       />
     )
   }

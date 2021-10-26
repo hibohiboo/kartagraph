@@ -19,7 +19,7 @@ const LinksViewer: React.FC<{
     }}
   >
     <div>
-      <div>{texts.map((command) => replaceText(command.value))}</div>
+      <div>{texts.map((command) => replaceText(command.label))}</div>
       <div className="buttons">
         {links.map((command, i) => (
           <button

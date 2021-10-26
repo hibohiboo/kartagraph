@@ -2,6 +2,7 @@ import { commandType } from './constants'
 import {
   Command,
   GetTagcommand,
+  IconTextCommand,
   JumpCommand,
   LinkCommand,
   SelectWaitCommand,
@@ -11,6 +12,9 @@ export * from './commandToStatus'
 
 export const isTextCommand = (command: Command): command is TextCommand =>
   command.type === commandType.Text
+export const isIconTextCommand = (
+  command: Command,
+): command is IconTextCommand => command.type === commandType.IconText
 export const isLinkCommand = (command: Command): command is LinkCommand =>
   command.type === commandType.Link
 export const isCaptionCommand = (command: Command): command is TextCommand =>

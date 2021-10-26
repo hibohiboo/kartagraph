@@ -1,4 +1,4 @@
-import { commandType } from '../command/constants'
+import { commandType, iconType } from '../command/constants'
 import { createTag } from '../tag'
 import { Scenario, ScenarioEvent } from './types'
 
@@ -6,10 +6,15 @@ const commandQueue = [
   {
     name: 'テスト1',
     type: commandType.Text,
-    value: `酒場の娘
+    label: `酒場の娘
 
 「$??Character1$さんですね。
     まずは、Fランクからのスタートになります」`,
+  },
+  {
+    type: commandType.IconText,
+    icon: iconType.tag,
+    label: '【Fランク冒険者】 のタグを獲得しました。 ',
   },
   {
     name: 'ジャンプ',
@@ -22,7 +27,7 @@ const second = [
   {
     name: 'テスト2',
     type: commandType.LinkCaption,
-    value: `これからどうしようか。
+    label: `これからどうしようか。
 
     `,
   },
@@ -44,7 +49,7 @@ const 張り紙 = [
   {
     name: 'テスト3',
     type: commandType.LinkCaption,
-    value: `気になる張り紙は今はない。
+    label: `気になる張り紙は今はない。
 
 `,
   },
@@ -60,7 +65,7 @@ const 娘と話す = [
   {
     name: 'テスト',
     type: commandType.LinkCaption,
-    value: `酒場の娘
+    label: `酒場の娘
 
 「$??Character1$さんの職業ってなんですか？」
 
@@ -108,7 +113,7 @@ const events = {
       },
       {
         type: commandType.LinkCaption,
-        value: `酒場の娘
+        label: `酒場の娘
     
 「戦士なんですね」
 `,
@@ -123,7 +128,7 @@ const events = {
       {
         name: 'テスト1',
         type: commandType.Text,
-        value: `酒場の娘
+        label: `酒場の娘
 
 「珍しい職業なんですね」`,
       },
@@ -140,7 +145,7 @@ const events = {
       {
         name: 'テスト1',
         type: commandType.Text,
-        value: `酒場の娘
+        label: `酒場の娘
   
 「あっ、無理にとは言いませんよ」`,
       },
