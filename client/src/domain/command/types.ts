@@ -1,3 +1,4 @@
+import { Tag } from '../tag/types'
 import { CommandType } from './constants'
 
 export interface Command {
@@ -20,4 +21,8 @@ export interface LinkCommand extends JumpCommand {
   label: string
   // nextEventDeck?: EventDeckId
   // nextScenario: ScenarioId
+}
+
+export interface GetTagcommand extends Command {
+  tag: Tag
 }

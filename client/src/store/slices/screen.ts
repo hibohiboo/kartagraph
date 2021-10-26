@@ -1,7 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Command, LinkCommand, TextCommand } from '@/domain/command/types'
-import { eventStatus, EventStatus } from '@/domain/scenario/constants'
-import { commandToStatus } from '@/domain/command'
+import { LinkCommand, TextCommand } from '@/domain/command/types'
 
 export interface ScreenState {
   texts: TextCommand[]

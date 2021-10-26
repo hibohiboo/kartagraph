@@ -1,5 +1,6 @@
 import {
   isCaptionCommand,
+  isGetTagCommand,
   isJumpCommand,
   isLinkCommand,
   isTextCommand,
@@ -14,7 +15,8 @@ export const commandToStatus = (command: Command) => {
   if (
     isLinkCommand(command) ||
     isCaptionCommand(command) ||
-    isJumpCommand(command)
+    isJumpCommand(command) ||
+    isGetTagCommand(command)
   ) {
     return eventStatus.Executing
   }

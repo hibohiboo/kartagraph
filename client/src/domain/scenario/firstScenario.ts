@@ -1,4 +1,5 @@
 import { commandType } from '../command/constants'
+import { createTag } from '../tag'
 import { Scenario, ScenarioEvent } from './types'
 
 const commandQueue = [
@@ -98,7 +99,22 @@ const events = {
   second: { name: 'second', commands: second },
   張り紙: { name: '張り紙', commands: 張り紙 },
   娘と話す: { name: '娘と話す', commands: 娘と話す },
-  戦士: { name: '戦士', commands: 張り紙 },
+  戦士: {
+    name: '戦士',
+    commands: [
+      {
+        type: commandType.GetTag,
+        tag: createTag({ name: '職業@戦士' }),
+      },
+      {
+        type: commandType.LinkCaption,
+        value: `酒場の娘
+    
+「戦士なんですね」
+`,
+      },
+    ],
+  },
   魔法使い: { name: '魔法使い', commands: 張り紙 },
   盗賊: { name: '盗賊', commands: 張り紙 },
   その他: {

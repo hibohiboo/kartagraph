@@ -40,9 +40,7 @@ export const scenarioSlice = createSlice({
         throw Error('currentCommandがundefined')
       }
       if (state.currentCommand === state.commandQueue.length - 1) {
-        state.commandQueue = [
-          { name: commandType.SelectWait, type: commandType.SelectWait },
-        ]
+        state.commandQueue = [{ type: commandType.SelectWait }]
         state.currentCommand = 0
         state.currentStatus = eventStatus.SelectWait
         return

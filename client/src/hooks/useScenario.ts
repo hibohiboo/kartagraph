@@ -9,9 +9,10 @@ import { scenarioSlice } from '@/store/slices/scenario'
 import { scenario } from '@/domain/scenario/firstScenario'
 import { commandType } from '@/domain/command/constants'
 import { eventStatus } from '@/domain/scenario/constants'
-import { screenSlice } from '@/store/slices'
+import { screenSlice, charactersSlice } from '@/store/slices'
 import {
   isCaptionCommand,
+  isGetTagCommand,
   isJumpCommand,
   isLinkCommand,
 } from '@/domain/command'
@@ -19,7 +20,7 @@ import { linksSelector, textsSelector } from '@/store/selectors/screen'
 
 const { setScenario, nextCommand, toWait, jump } = scenarioSlice.actions
 const { addLink, setText, resetLinks, resetTexts } = screenSlice.actions
-
+const { addTag } = charactersSlice.actions
 const useScenario = () => {
   const command = useAppSelector(commandSelector)
   const status = useAppSelector(eventStatusSelector)
@@ -60,6 +61,10 @@ const useScenario = () => {
     }
     if (isJumpCommand(command)) {
       dispatch(jump(command.nextEvent))
+      return
+    }
+    if (isGetTagCommand(command)) {
+      dispatch(addTag(command.tag))
       return
     }
   }, [command])

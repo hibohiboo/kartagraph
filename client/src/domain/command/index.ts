@@ -1,6 +1,7 @@
 import { commandType } from './constants'
 import {
   Command,
+  GetTagcommand,
   JumpCommand,
   LinkCommand,
   SelectWaitCommand,
@@ -20,6 +21,9 @@ export const isSelectWaitCommand = (
 
 export const isJumpCommand = (command: Command): command is JumpCommand =>
   command.type === commandType.Jump
+
+export const isGetTagCommand = (command: Command): command is GetTagcommand =>
+  command.type === commandType.GetTag
 
 export const commandFactory = (command: Command) => {
   if (isTextCommand(command)) {
