@@ -55,11 +55,86 @@ const 張り紙 = [
   },
 ]
 
+const 娘と話す = [
+  {
+    name: 'テスト',
+    type: commandType.LinkCaption,
+    value: `酒場の娘
+
+「$??Character1$さんの職業ってなんですか？」
+
+
+`,
+  },
+  {
+    type: commandType.Link,
+    label: `戦士`,
+    nextEvent: '戦士',
+  },
+  {
+    type: commandType.Link,
+    label: `魔法使い`,
+    nextEvent: '魔法使い',
+  },
+  {
+    type: commandType.Link,
+    label: `盗賊`,
+    nextEvent: '盗賊',
+  },
+  {
+    type: commandType.Link,
+    label: `その他`,
+    nextEvent: 'その他',
+  },
+  {
+    type: commandType.Link,
+    label: `答えたくない`,
+    nextEvent: '答えたくない',
+  },
+]
+
 const events = {
   first: { name: 'first', commands: commandQueue },
   second: { name: 'second', commands: second },
   張り紙: { name: '張り紙', commands: 張り紙 },
-  娘と話す: { name: '娘と話す', commands: 張り紙 },
+  娘と話す: { name: '娘と話す', commands: 娘と話す },
+  戦士: { name: '戦士', commands: 張り紙 },
+  魔法使い: { name: '魔法使い', commands: 張り紙 },
+  盗賊: { name: '盗賊', commands: 張り紙 },
+  その他: {
+    name: 'その他',
+    commands: [
+      {
+        name: 'テスト1',
+        type: commandType.Text,
+        value: `酒場の娘
+
+「珍しい職業なんですね」`,
+      },
+      {
+        name: 'ジャンプ',
+        type: commandType.Jump,
+        nextEvent: 'second',
+      },
+    ],
+  },
+  答えたくない: {
+    name: '答えたくない',
+    commands: [
+      {
+        name: 'テスト1',
+        type: commandType.Text,
+        value: `酒場の娘
+  
+「あっ、無理にとは言いませんよ」`,
+      },
+      {
+        name: 'ジャンプ',
+        type: commandType.Jump,
+        nextEvent: 'second',
+      },
+    ],
+  },
 }
 export const scenario: Scenario = {
   events,

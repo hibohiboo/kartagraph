@@ -40,7 +40,7 @@ describe('nextCommand', () => {
     })
   })
   test('最後のコマンドは待機になること', () => {
-    const commandQueue: Command[] = [
+    const commandQueue = [
       { name: 'テスト1', type: commandType.Text },
       { name: 'テスト2', type: commandType.Text },
     ]

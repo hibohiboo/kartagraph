@@ -1,7 +1,6 @@
 import { CommandType } from './constants'
 
 export interface Command {
-  name: string
   type: CommandType
 }
 
@@ -18,7 +17,7 @@ export interface JumpCommand extends Command {
 }
 
 export interface LinkCommand extends JumpCommand {
-  nextEvent: EventId
+  label: string
   // nextEventDeck?: EventDeckId
   // nextScenario: ScenarioId
 }

@@ -23,7 +23,7 @@ const LinksViewer: React.FC<{
       <div className="buttons">
         {links.map((command, i) => (
           <button
-            key={`${command.name}${i}`}
+            key={`${command.type}${i}`}
             className="button"
             onClick={() => linkClickHandler(command.nextEvent)}
           >
