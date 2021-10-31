@@ -1,11 +1,15 @@
 import { Command } from '../command/types'
 
-export interface Scenario {
+export interface ScenarioInfo {
   name: string
   description: string
-  // decks: EventDeck[]
   requireTags: string[]
   excludeTags: string[]
+}
+export interface Scenario {
+  id: string
+  name: string
+  // decks: EventDeck[]
   events: Record<string, ScenarioEvent>
   firstEventId: string
 }

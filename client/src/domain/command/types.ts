@@ -1,3 +1,4 @@
+import { ScenarioInfo } from '../scenario/types'
 import { Tag } from '../tag/types'
 import type { CommandType, IconType } from './constants'
 
@@ -28,4 +29,7 @@ export interface LinkCommand extends JumpCommand {
 
 export interface GetTagcommand extends Command {
   tag: Tag
+}
+export interface ScenarioStartLinkCommand extends LinkCommand {
+  info: ScenarioInfo
 }

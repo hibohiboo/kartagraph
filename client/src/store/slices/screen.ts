@@ -1,14 +1,20 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { LinkCommand, TextCommand } from '@/domain/command/types'
+import {
+  LinkCommand,
+  ScenarioStartLinkCommand,
+  TextCommand,
+} from '@/domain/command/types'
 
 export interface ScreenState {
   texts: TextCommand[]
   links: LinkCommand[]
+  scenalioLinks: ScenarioStartLinkCommand[]
 }
 
 export const initialState: ScreenState = {
   texts: [],
   links: [],
+  scenalioLinks: [],
 }
 
 export const screenSlice = createSlice({
@@ -20,6 +26,7 @@ export const screenSlice = createSlice({
     },
     resetLinks: (state) => {
       state.links = []
+      state.scenalioLinks = []
     },
     setText: (state, { payload }: PayloadAction<TextCommand>) => {
       state.texts = [payload]
@@ -29,6 +36,12 @@ export const screenSlice = createSlice({
     },
     addLink: (state, { payload }: PayloadAction<LinkCommand>) => {
       state.links.push(payload)
+    },
+    addScenarioLink: (
+      state,
+      { payload }: PayloadAction<ScenarioStartLinkCommand>,
+    ) => {
+      state.scenalioLinks.push(payload)
     },
   },
 })

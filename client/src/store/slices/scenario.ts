@@ -8,8 +8,8 @@ import { Scenario, ScenarioEvent } from '@/domain/scenario/types'
 export interface ScenarioState {
   commandQueue: Command[]
   currentCommand: number | undefined
-  currentStatus: EventStatus
   events: Record<string, ScenarioEvent>
+  currentStatus: EventStatus
 }
 
 export const initialState: ScenarioState = {

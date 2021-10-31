@@ -4,6 +4,7 @@ import {
   isIconTextCommand,
   isJumpCommand,
   isLinkCommand,
+  isScenarioStartLinkCommand,
   isTextCommand,
 } from '.'
 import { eventStatus } from '../scenario/constants'
@@ -17,7 +18,8 @@ export const commandToStatus = (command: Command) => {
     isLinkCommand(command) ||
     isCaptionCommand(command) ||
     isJumpCommand(command) ||
-    isGetTagCommand(command)
+    isGetTagCommand(command) ||
+    isScenarioStartLinkCommand(command)
   ) {
     return eventStatus.Executing
   }

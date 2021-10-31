@@ -9,6 +9,7 @@ import {
   TextCommand,
 } from './types'
 export * from './commandToStatus'
+export * from './scenario'
 
 export const isTextCommand = (command: Command): command is TextCommand =>
   command.type === commandType.Text

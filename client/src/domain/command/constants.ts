@@ -6,6 +6,8 @@ export const commandType = {
   Jump: 'ジャンプ',
   GetTag: 'タグ取得',
   IconText: 'アイコン付きテキスト',
+  ScenarioStartLinkCommand: 'シナリオ開始リンク',
+  ScenarioStartCommand: 'シナリオ開始',
 } as const
 export type CommandType = typeof commandType[keyof typeof commandType]
 
