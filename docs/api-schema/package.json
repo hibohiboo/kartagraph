@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "redoc": "redoc-cli bundle ./openapi.json --options.menuToggle --options.pathInMiddlePanel  -o ./dist/index.html",
+    "redoc": "redoc-cli bundle ./openapi.yml --options.menuToggle --options.pathInMiddlePanel  -o ./dist/index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
