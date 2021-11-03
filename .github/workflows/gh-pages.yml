@@ -11,26 +11,26 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Setup Node
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16'
+#       - name: Setup Node
+#         uses: actions/setup-node@v2
+#         with:
+#           node-version: '16'
 
-# REST スキーマ
+# # REST スキーマ
 
-      - name: OpenAPI Setup
-        run: npm ci
-        working-directory: ./documents/api-schema
+#       - name: OpenAPI Setup
+#         run: npm ci
+#         working-directory: ./documents/api-schema
 
-      - name: OpenAPI Make
-        run: npm run redoc
-        working-directory: ./documents/api-schema
+#       - name: OpenAPI Make
+#         run: npm run redoc
+#         working-directory: ./documents/api-schema
 
 
-      - name: OpenAPI Move files
-        run: |
-          mkdir -p ./docs/publish/api-schema
-          mv ./documents/api-schema/dist/index.html ./docs/publish/api-schema/
+#       - name: OpenAPI Move files
+#         run: |
+#           mkdir -p ./docs/publish/api-schema
+#           mv ./documents/api-schema/dist/index.html ./docs/publish/api-schema/
 
 # markdown to HTML
 
@@ -44,7 +44,7 @@ jobs:
           echo "Lorem ipsum" > lorem_1.md  # create two example files
           echo "dolor sit amet" > lorem_2.md
           # this will also include README.md
-          echo "::set-output name=files::$(printf '"%s" ' *.md)"
+          echo "::set-output name=files::$(printf '"documents/desigh/%s" ' *.md)"
         working-directory: ./documents/design
 
       - uses: docker://pandoc/latex:2.9
