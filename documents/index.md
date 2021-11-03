@@ -1,4 +1,5 @@
 ## カルタグラフ設計書
 
-[OPEN API](/publish/api-schema/)  
-[設計書](/publish/design/)
+[設計書](/publish/design/)  
+[Redoc - OPEN API](/publish/api-schema/)  
+[Spectaql - GraphQL](/publish/api-schema/)

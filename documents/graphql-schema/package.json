@@ -1,0 +1,15 @@
+{
+  "name": "graphql-schema",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "spectaql config.yml"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "spectaql": "^0.9.2"
+  }
+}
