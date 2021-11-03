@@ -1,3 +1,20 @@
+/** https://www.ushiji.online/table-of-contents **/
+.table-of-content {
+  max-width: 600px;
+  margin: 2rem 1rem;
+  border: solid #dadada 1px;
+  border-radius: 8px;
+  box-shadow :0px 0px 5px silver;
+  padding: 0.5rem 0.5rem 0.5rem 2rem;
+  line-height: 1.5;
+  
+}
+.table-of-content:before {
+  content: "目次";
+  font-size: 110%;
+  font-weight: bold;
+}
+/****/
 html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;

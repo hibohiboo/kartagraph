@@ -52,7 +52,10 @@ module.exports = {
         // Pedantic mode (default: true)
         gfm: true,
         // Plugins configs
-        plugins: ["gatsby-remark-mermaid"],
+        plugins: [
+          `gatsby-remark-autolink-headers`,
+          "gatsby-remark-mermaid",
+        ],
       },
     },
   ],

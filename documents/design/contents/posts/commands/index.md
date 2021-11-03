@@ -4,7 +4,17 @@ path: "commands"
 date: "2019-01-22"
 ---
 
-コマンド目次
+## 目次
+
+```toc
+# This code block gets replaced with the TOC
+exclude: Table of Contents
+tight: false
+ordered: false
+from-heading: 2
+to-heading: 6
+class-name: "table-of-contents"
+```
 
 ## コマンド
 
