@@ -13,9 +13,7 @@ const IndexPage = ({ data }) => (
       <ul>
         {data.allMarkdownRemark.edges.map(({ node }) => (
           <div key={node.id}>
-            <Link to={`/${node.frontmatter.path}/`}>
-              {node.frontmatter.title}
-            </Link>
+            <a href={`${node.frontmatter.path}/`}>{node.frontmatter.title}</a>
           </div>
         ))}
       </ul>
