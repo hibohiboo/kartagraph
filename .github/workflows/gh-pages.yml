@@ -17,6 +17,7 @@ jobs:
         with:
           path: ./documents/draw.io
           format: png
+          output:  ./docs/drawio-assets
           transparent: true
 
 # npm 準備
