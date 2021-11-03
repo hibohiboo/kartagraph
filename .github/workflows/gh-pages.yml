@@ -11,26 +11,26 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-#       - name: Setup Node
-#         uses: actions/setup-node@v2
-#         with:
-#           node-version: '16'
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
 
-# # REST スキーマ
+# REST スキーマ
 
-#       - name: OpenAPI Setup
-#         run: npm ci
-#         working-directory: ./documents/api-schema
+      - name: OpenAPI Setup
+        run: npm ci
+        working-directory: ./documents/api-schema
 
-#       - name: OpenAPI Make
-#         run: npm run redoc
-#         working-directory: ./documents/api-schema
+      - name: OpenAPI Make
+        run: npm run redoc
+        working-directory: ./documents/api-schema
 
 
-#       - name: OpenAPI Move files
-#         run: |
-#           mkdir -p ./docs/publish/api-schema
-#           mv ./documents/api-schema/dist/index.html ./docs/publish/api-schema/
+      - name: OpenAPI Move files
+        run: |
+          mkdir -p ./docs/publish/api-schema
+          mv ./documents/api-schema/dist/index.html ./docs/publish/api-schema/
 
 # markdown to HTML
 
@@ -49,7 +49,7 @@ jobs:
           args: >- # allows you to break string into multiple lines
             --standalone
             --output=docs/publish/design/index.html
-            documents/design/index.md
+            documents/index.md
 # デプロイ
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
