@@ -16,33 +16,36 @@ jobs:
         with:
           node-version: '16'
 
-# REST スキーマ
+# # REST スキーマ
 
-      - name: OpenAPI Setup
-        run: npm ci
-        working-directory: ./documents/api-schema
+#       - name: OpenAPI Setup
+#         run: npm ci
+#         working-directory: ./documents/api-schema
 
-      - name: OpenAPI Make
-        run: npm run redoc
-        working-directory: ./documents/api-schema
+#       - name: OpenAPI Make
+#         run: npm run redoc
+#         working-directory: ./documents/api-schema
 
 
-      - name: OpenAPI Move files
-        run: |
-          mkdir -p ./docs/publish/api-schema
-          mv ./documents/api-schema/dist/index.html ./docs/publish/api-schema/
+#       - name: OpenAPI Move files
+#         run: |
+#           mkdir -p ./docs/publish/api-schema
+#           mv ./documents/api-schema/dist/index.html ./docs/publish/api-schema/
 
 # markdown to HTML
 
-      - name: Create Output Dir
-        run: |
-          mkdir -p ./docs/publish/design
-
-      - name: create file list
-        id: files_list
-        run: |
-          echo "::set-output name=files::$(printf '"documents/desigh/%s" ' *.md)"
+      - name: Gatsby Setup
+        run: npm ci
         working-directory: ./documents/design
+
+      - name: Gatsby Make
+        run: npm run build
+        working-directory: ./documents/design
+
+      - name: Gatsby Move files
+        run: |
+          mkdir -p ./docs/publish
+          mv ./documents/design/public ./docs/publish/design
 
       - uses: docker://pandoc/core:2.9
         with:
