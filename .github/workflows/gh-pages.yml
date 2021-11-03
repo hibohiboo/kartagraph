@@ -41,17 +41,15 @@ jobs:
       - name: create file list
         id: files_list
         run: |
-          echo "Lorem ipsum" > lorem_1.md  # create two example files
-          echo "dolor sit amet" > lorem_2.md
-          # this will also include README.md
           echo "::set-output name=files::$(printf '"documents/desigh/%s" ' *.md)"
         working-directory: ./documents/design
 
-      - uses: docker://pandoc/latex:2.9
+      - uses: docker://pandoc/core:2.9
         with:
-          args: --output=docs/design/result.pdf ${{ steps.files_list.outputs.files }}
-
-
+          args: >- # allows you to break string into multiple lines
+            --standalone
+            --output=docs/publish/design/index.html
+            documents/design/index.md
 # デプロイ
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
