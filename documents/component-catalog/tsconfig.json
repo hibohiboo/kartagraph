@@ -21,14 +21,12 @@
     "jsx": "react-jsx",
     "noFallthroughCasesInSwitch": true,
     "paths": {
-      "@/*": ["./client/src/*"]
-    },
-    "sourceMap": true
+      "@/*": ["../../client/src/*"]
+    }
   },
   "include": [
-    ".storybook",
-    "client/src",
-    "client/stories",
-    "client/tests"
-  ]
+    "../../.storybook",
+    "../../client/src",
+    "../../client/stories",
+    "../../client/tests" ]
 }

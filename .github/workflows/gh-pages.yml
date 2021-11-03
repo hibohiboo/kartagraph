@@ -16,6 +16,8 @@ jobs:
         with:
           node-version: '16'
 
+# REST スキーマ
+
       - name: OpenAPI Setup
         run: npm ci
         working-directory: ./docs/api-schema
