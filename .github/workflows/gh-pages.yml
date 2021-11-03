@@ -20,20 +20,40 @@ jobs:
 
       - name: OpenAPI Setup
         run: npm ci
-        working-directory: ./docs/api-schema
+        working-directory: ./documents/api-schema
 
       - name: OpenAPI Make
         run: npm run redoc
-        working-directory: ./docs/api-schema
+        working-directory: ./documents/api-schema
 
 
       - name: OpenAPI Move files
         run: |
           mkdir -p ./docs/publish/api-schema
-          mv ./docs/api-schema/dist/index.html ./docs/publish/api-schema/
+          mv ./documents/api-schema/dist/index.html ./docs/publish/api-schema/
 
+# markdown to HTML
+
+      - name: create file list
+        id: files_list
+        run: |
+          echo "Lorem ipsum" > lorem_1.md  # create two example files
+          echo "dolor sit amet" > lorem_2.md
+          mkdir docs/output  # create output dir
+          # this will also include README.md
+          echo "::set-output name=files::$(printf '"%s" ' *.md)"
+        working-directory: ./documents/design
+
+      - uses: docker://pandoc/latex:2.9
+        with:
+          args: --output=docs/output/result.pdf ${{ steps.files_list.outputs.files }}
+
+
+# デプロイ
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
+
+
