@@ -18,19 +18,19 @@ jobs:
 
 # # REST スキーマ
 
-#       - name: OpenAPI Setup
-#         run: npm ci
-#         working-directory: ./documents/api-schema
+      - name: OpenAPI Setup
+        run: npm ci
+        working-directory: ./documents/api-schema
 
-#       - name: OpenAPI Make
-#         run: npm run redoc
-#         working-directory: ./documents/api-schema
+      - name: OpenAPI Make
+        run: npm run redoc
+        working-directory: ./documents/api-schema
 
 
-#       - name: OpenAPI Move files
-#         run: |
-#           mkdir -p ./docs/publish/api-schema
-#           mv ./documents/api-schema/dist/index.html ./docs/publish/api-schema/
+      - name: OpenAPI Move files
+        run: |
+          mkdir -p ./docs/publish/api-schema
+          mv ./documents/api-schema/dist/index.html ./docs/publish/api-schema/
 
 # # GraphQL スキーマ
 
@@ -46,22 +46,22 @@ jobs:
       - name: GraphQL Move files
         run: |
           mkdir -p ./docs/publish/graphql-schema
-          mv ./documents/graphql-schema/public ./docs/publish/graphql-schema
+          mv ./documents/graphql-schema/public/* ./docs/publish/graphql-schema/
 
 # markdown to HTML
 
-      # - name: Gatsby Setup
-      #   run: npm ci
-      #   working-directory: ./documents/design
+      - name: Gatsby Setup
+        run: npm ci
+        working-directory: ./documents/design
 
-      # - name: Gatsby Make
-      #   run: npm run build
-      #   working-directory: ./documents/design
+      - name: Gatsby Make
+        run: npm run build
+        working-directory: ./documents/design
 
-      # - name: Gatsby Move files
-      #   run: |
-      #     mkdir -p ./docs/publish
-      #     mv ./documents/design/public ./docs/publish/design
+      - name: Gatsby Move files
+        run: |
+          mkdir -p ./docs/publish
+          mv ./documents/design/public ./docs/publish/design
 
       - uses: docker://pandoc/core:2.9
         with:
