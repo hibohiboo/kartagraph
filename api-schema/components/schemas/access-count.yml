@@ -1,9 +1,0 @@
-AccessNumber:
-  type: object
-  properties:
-    accessNumber:
-      description: アクセスカウント
-      type: number
-      format: int64
-  required:
-    - accessNumber

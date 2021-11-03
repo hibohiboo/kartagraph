@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>index</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="コマンド">コマンド</h2>
+<p>最小の単位。以下の種類がある</p>
+<table>
+<thead>
+<tr class="header">
+<th>コマンド</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>テキスト</td>
+<td>文字を表示する。画面クリックによって次のコマンド。</td>
+</tr>
+<tr class="even">
+<td>選択肢</td>
+<td>選択肢を表示する。</td>
+</tr>
+<tr class="odd">
+<td>入力待ち</td>
+<td>入力待ち状態にする</td>
+</tr>
+<tr class="even">
+<td>リンクキャプション</td>
+<td>リンク説明</td>
+</tr>
+<tr class="odd">
+<td>リンク</td>
+<td>次のイベントへ遷移</td>
+</tr>
+<tr class="even">
+<td>タグ分岐</td>
+<td>パーティのタグを判定して次のコマンド。TODO: キャラクタ判定</td>
+</tr>
+<tr class="odd">
+<td>タグ取得</td>
+<td>パーティ/キャラクターにタグを付与する</td>
+</tr>
+<tr class="even">
+<td>タグ廃棄</td>
+<td>パーティ/キャラクターからタグを除去する</td>
+</tr>
+<tr class="odd">
+<td>シナリオ開始</td>
+<td>現在のシナリオを開始する</td>
+</tr>
+<tr class="even">
+<td>シナリオ終了</td>
+<td>シナリオを終了する</td>
+</tr>
+<tr class="odd">
+<td>キャラクター追加</td>
+<td>キャラクターをパーティに追加する</td>
+</tr>
+<tr class="even">
+<td>確認</td>
+<td>OK で次のイベント、キャンセルで元の状態に戻る</td>
+</tr>
+<tr class="odd">
+<td>ジャンプ</td>
+<td>次のイベントへ遷移</td>
+</tr>
+<tr class="even">
+<td>コール</td>
+<td>現在のイベントを中断して別のイベントを読み込む。終わったらもとに戻る</td>
+</tr>
+</tbody>
+</table>
+<h3 id="状態遷移">状態遷移</h3>
+<pre class="mermaid"><code>
+stateDiagram-v2
+    [*] --&gt; ClickWait
+</code></pre>
+</body>
+</html>
