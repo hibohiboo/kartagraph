@@ -24,6 +24,9 @@ jobs:
           output: docs/publish/drawio-assets
           transparent: true
 
+      - name: OpenAPI Move files
+        run: |
+          mv ./documents/draw.io ./docs/publish/draw.io
 # npm 準備
       # - name: Setup Node
       #   uses: actions/setup-node@v2
