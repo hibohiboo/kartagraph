@@ -292,9 +292,9 @@ https://example.com/graphql
                   <head></head>
                   <body><pre><code class="hljs language-json">{
   <span class="hljs-attr">"nonReqQueryArg"</span>: <span class="hljs-string">"Metadata example of `nonReqQueryArg`"</span>,
-  <span class="hljs-attr">"reqQueryArg"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"reqQueryArrayArg"</span>: [<span class="hljs-string">"xyz789"</span>],
-  <span class="hljs-attr">"dblReqQueryArrayArg"</span>: [<span class="hljs-string">"abc123"</span>]
+  <span class="hljs-attr">"reqQueryArg"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"reqQueryArrayArg"</span>: [<span class="hljs-string">"abc123"</span>],
+  <span class="hljs-attr">"dblReqQueryArrayArg"</span>: [<span class="hljs-string">"xyz789"</span>]
 }
 </code></pre> </body>
                   </html>
@@ -308,7 +308,7 @@ https://example.com/graphql
                   <h5>Response </h5>
                   <html>
                   <head></head>
-                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"data"</span>: {<span class="hljs-attr">"myQuery"</span>: <span class="hljs-string">"xyz789"</span>}}
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"data"</span>: {<span class="hljs-attr">"myQuery"</span>: <span class="hljs-string">"abc123"</span>}}
 </code></pre> </body>
                   </html>
                 </section>
@@ -364,9 +364,9 @@ https://example.com/graphql
     <span class="hljs-attr">"myTypes"</span>: [
       {
         <span class="hljs-attr">"nonRequiredField"</span>: <span class="hljs-string">"Metadata example of `nonRequiredField`"</span>,
-        <span class="hljs-attr">"requiredField"</span>: <span class="hljs-string">"abc123"</span>,
+        <span class="hljs-attr">"requiredField"</span>: <span class="hljs-string">"xyz789"</span>,
         <span class="hljs-attr">"episode"</span>: <span class="hljs-string">EpisodeEnum</span>,
-        <span class="hljs-attr">"requiredArrayField"</span>: [<span class="hljs-string">"xyz789"</span>],
+        <span class="hljs-attr">"requiredArrayField"</span>: [<span class="hljs-string">"abc123"</span>],
         <span class="hljs-attr">"doubleRequiredArrayField"</span>: [<span class="hljs-string">"abc123"</span>]
       }
     ]
@@ -497,7 +497,7 @@ https://example.com/graphql
                   <h5>Variables</h5>
                   <html>
                   <head></head>
-                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"optionalArg"</span>: [<span class="hljs-string">"abc123"</span>]}
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"optionalArg"</span>: [<span class="hljs-string">"xyz789"</span>]}
 </code></pre> </body>
                   </html>
                 </section>
@@ -510,7 +510,7 @@ https://example.com/graphql
                   <h5>Response </h5>
                   <html>
                   <head></head>
-                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"data"</span>: {<span class="hljs-attr">"optionalsQuery"</span>: [<span class="hljs-string">"abc123"</span>]}}
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"data"</span>: {<span class="hljs-attr">"optionalsQuery"</span>: [<span class="hljs-string">"xyz789"</span>]}}
 </code></pre> </body>
                   </html>
                 </section>
@@ -626,7 +626,7 @@ https://example.com/graphql
                   <h5>Response </h5>
                   <html>
                   <head></head>
-                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"data"</span>: {<span class="hljs-attr">"stringThing"</span>: <span class="hljs-string">"xyz789"</span>}}
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"data"</span>: {<span class="hljs-attr">"stringThing"</span>: <span class="hljs-string">"abc123"</span>}}
 </code></pre> </body>
                   </html>
                 </section>
@@ -700,8 +700,8 @@ https://example.com/graphql
                   <body><pre><code class="hljs language-json">{
   <span class="hljs-attr">"nonReqMutationArg"</span>: <span class="hljs-string">"some default string"</span>,
   <span class="hljs-attr">"reqMutationArg"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"reqMutationArrayArg"</span>: [<span class="hljs-string">"abc123"</span>],
-  <span class="hljs-attr">"dblReqMutationArrayArg"</span>: [<span class="hljs-string">"abc123"</span>]
+  <span class="hljs-attr">"reqMutationArrayArg"</span>: [<span class="hljs-string">"xyz789"</span>],
+  <span class="hljs-attr">"dblReqMutationArrayArg"</span>: [<span class="hljs-string">"xyz789"</span>]
 }
 </code></pre> </body>
                   </html>
@@ -715,7 +715,7 @@ https://example.com/graphql
                   <h5>Response </h5>
                   <html>
                   <head></head>
-                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"data"</span>: {<span class="hljs-attr">"myMutation"</span>: <span class="hljs-string">"xyz789"</span>}}
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"data"</span>: {<span class="hljs-attr">"myMutation"</span>: <span class="hljs-string">"abc123"</span>}}
 </code></pre> </body>
                   </html>
                 </section>
@@ -773,7 +773,7 @@ https://example.com/graphql
                   <h5>Variables</h5>
                   <html>
                   <head></head>
-                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"anArgument"</span>: <span class="hljs-string">"abc123"</span>}
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"anArgument"</span>: <span class="hljs-string">"xyz789"</span>}
 </code></pre> </body>
                   </html>
                 </section>
@@ -811,7 +811,7 @@ https://example.com/graphql
                   <h5>Example</h5>
                   <html>
                   <head></head>
-                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol"><span class="hljs-literal">false</span></span>
+                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol"><span class="hljs-literal">true</span></span>
 </code></pre> </body>
                   </html>
                 </section>
@@ -1074,8 +1074,8 @@ https://example.com/graphql
   <span class="hljs-attr">"nonRequiredField"</span>: <span class="hljs-string">"Metadata example of `nonRequiredField`"</span>,
   <span class="hljs-attr">"requiredField"</span>: <span class="hljs-string">"abc123"</span>,
   <span class="hljs-attr">"episode"</span>: <span class="hljs-string">EpisodeEnum</span>,
-  <span class="hljs-attr">"requiredArrayField"</span>: [<span class="hljs-string">"abc123"</span>],
-  <span class="hljs-attr">"doubleRequiredArrayField"</span>: [<span class="hljs-string">"xyz789"</span>]
+  <span class="hljs-attr">"requiredArrayField"</span>: [<span class="hljs-string">"xyz789"</span>],
+  <span class="hljs-attr">"doubleRequiredArrayField"</span>: [<span class="hljs-string">"abc123"</span>]
 }
 </code></pre> </body>
                   </html>
