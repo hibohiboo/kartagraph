@@ -19,9 +19,9 @@ jobs:
       - name: Export draw.io
         uses: rlespinasse/drawio-export-action@v1.x
         with:
-          path: ./documents/draw.io/architechture.dio
+          path: documents/draw.io/architechture.dio
           format: png
-          output:  ./docs/publish/drawio-assets
+          output: docs/publish/drawio-assets
           transparent: true
 
 # npm 準備
@@ -79,12 +79,12 @@ jobs:
 #           mv ./documents/design/public ./docs/publish/design
 # pandoc
 
-      # - uses: docker://pandoc/core:2.9
-      #   with:
-      #     args: >- # allows you to break string into multiple lines
-      #       --standalone
-      #       --output=docs/index.html
-      #       documents/index.md
+      - uses: docker://pandoc/core:2.9
+        with:
+          args: >- # allows you to break string into multiple lines
+            --standalone
+            --output=docs/index.html
+            documents/index.md
 
 # デプロイ
       - name: Deploy
