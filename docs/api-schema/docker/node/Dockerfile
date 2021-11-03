@@ -7,12 +7,11 @@ WORKDIR /app
 COPY .npmrc /app/.npmrc
 
 RUN npm init -y
-RUN npm i -D redoc redoc-cli swagger-cli
-RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"build\": \"swagger-cli bundle -r .\/openapi.yml -o .\/openapi.json\", /g" /app/package.json
-RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"redoc\": \"npm run build \&\& redoc-cli bundle .\/openapi.json --options.menuToggle --options.pathInMiddlePanel  -o .\/dist\/index.html\", /g" /app/package.json
+RUN npm i -D redoc redoc-cli
+RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"redoc\": \"npm run build \&\& redoc-cli bundle .\/openapi.yml --options.menuToggle --options.pathInMiddlePanel  -o .\/dist\/index.html\", /g" /app/package.json
 RUN mkdir -p /app/tmp
 RUN cp package.json ./tmp/
 RUN cp package-lock.json ./tmp/
 
 RUN npm i -D openapi-typescript-codegen
-RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"generate\": \"swagger-cli bundle -t yaml -r .\/openapi.yml -o .\/bundle.yml \&\& npx openapi-typescript-codegen --input .\/bundle.yml --output .\/dist --exportCore false --exportServices false --exportModels true --useUnionTypes \",/g" /app/package.json
+RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"generate\": \"npx openapi-typescript-codegen --input .\/bundle.yml --output .\/dist --exportCore false --exportServices false --exportModels true --useUnionTypes \",/g" /app/package.json
