@@ -1,6 +1,7 @@
 ---
-title: "My 1st Post"
-date: "2019-01-21"
+title: "コマンド一覧"
+path: "commands"
+date: "2019-01-22"
 ---
 
 コマンド目次

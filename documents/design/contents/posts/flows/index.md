@@ -1,5 +1,6 @@
 ---
-title: "状態遷移図"
+title: "状態一覧"
+path: "flows"
 date: "2019-01-22"
 ---
 
