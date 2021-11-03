@@ -15,7 +15,7 @@ jobs:
       - name: Export draw.io
         uses: rlespinasse/drawio-export-action@v1.x
         with:
-          path: ./documents/draw.io
+          path: ./documents/draw.io/architechture.dio
           format: png
           output:  ./docs/drawio-assets
           transparent: true
