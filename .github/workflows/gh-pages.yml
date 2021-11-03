@@ -51,7 +51,7 @@ jobs:
         with:
           args: >- # allows you to break string into multiple lines
             --standalone
-            --output=docs/publish/design/index.html
+            --output=docs/publish/index.html
             documents/index.md
 # デプロイ
       - name: Deploy
