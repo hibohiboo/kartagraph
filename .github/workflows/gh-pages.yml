@@ -11,13 +11,17 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Create gh-pages-dir
+        run: |
+          mkdir -p ./docs/publish
+
 # draw.io
       - name: Export draw.io
         uses: rlespinasse/drawio-export-action@v1.x
         with:
           path: ./documents/draw.io/architechture.dio
           format: png
-          output:  ./docs/drawio-assets
+          output:  ./docs/publish/drawio-assets
           transparent: true
 
 # npm 準備
