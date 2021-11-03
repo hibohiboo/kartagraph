@@ -20,10 +20,10 @@ jobs:
           transparent: true
 
 # npm 準備
-      - name: Setup Node
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16'
+      # - name: Setup Node
+      #   uses: actions/setup-node@v2
+      #   with:
+      #     node-version: '16'
 
 
 # # # REST スキーマ
@@ -73,12 +73,13 @@ jobs:
 #           mkdir -p ./docs/publish
 #           mv ./documents/design/public ./docs/publish/design
 # pandoc
-      - uses: docker://pandoc/core:2.9
-        with:
-          args: >- # allows you to break string into multiple lines
-            --standalone
-            --output=docs/index.html
-            documents/index.md
+
+      # - uses: docker://pandoc/core:2.9
+      #   with:
+      #     args: >- # allows you to break string into multiple lines
+      #       --standalone
+      #       --output=docs/index.html
+      #       documents/index.md
 
 # デプロイ
       - name: Deploy
