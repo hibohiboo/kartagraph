@@ -78,13 +78,27 @@ jobs:
           mkdir -p ./docs/publish
           mv ./documents/design/public ./docs/publish/design
 # pandoc
-
       - uses: docker://pandoc/core:2.9
         with:
           args: >- # allows you to break string into multiple lines
             --standalone
             --output=docs/index.html
             documents/index.md
+
+# component catalog
+      - name: StoryBook Setup
+        run: npm ci
+        working-directory: ./documents/components-catalog
+
+      - name: StoryBook Make
+        run: npx build-storybook -c ./.storybook -o ./components-catalog --no-dll
+        working-directory: ./documents/components-catalog
+
+      - name: StoryBook Move files
+        run: |
+          mkdir -p ./docs/publish/components-catalog
+          mv ./documents/components-catalog/components-catalog ./docs/publish/
+
 
 # デプロイ
       - name: Deploy

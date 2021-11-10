@@ -8,3 +8,7 @@
 
 [インフラ構成図](/kartagraph/publish/drawio/architechture-インフラ構成図.png)  
 [フロントエンド概念図](/kartagraph/publish/drawio/architechture-フロントエンド概念図.png)
+
+## コンポーネントカタログ
+
+[StoryBook](/kartagraph/publish/components-catalog/)
