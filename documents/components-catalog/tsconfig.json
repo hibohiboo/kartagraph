@@ -26,8 +26,6 @@
   "include": [
     ".storybook",
     "../../client/src",
-    "./client/stories",
-    "../../client/tests",
-    "./node_modules"
+    "./stories",
   ]
 }
