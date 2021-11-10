@@ -86,8 +86,7 @@ jobs:
 #             documents/index.md
 
 # component catalog
-      - name: Upgrade NPM
-        run: npm install -g npm
+
       - name: StoryBook Setup
         run: npm ci
         working-directory: ./documents/components-catalog
