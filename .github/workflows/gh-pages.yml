@@ -15,75 +15,75 @@ jobs:
         run: |
           mkdir -p ./docs/publish
 
-# draw.io
-      - name: Export draw.io
-        uses: rlespinasse/drawio-export-action@v1.x
-        with:
-          path: documents/draw.io
-          format: png
-          output: ../../docs/publish/drawio
-          transparent: true
+# # draw.io
+#       - name: Export draw.io
+#         uses: rlespinasse/drawio-export-action@v1.x
+#         with:
+#           path: documents/draw.io
+#           format: png
+#           output: ../../docs/publish/drawio
+#           transparent: true
 
-# npm 準備
-      - name: Setup Node
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-
-
-# # REST スキーマ
-
-      - name: OpenAPI Setup
-        run: npm ci
-        working-directory: ./documents/api-schema
-
-      - name: OpenAPI Make
-        run: npm run redoc
-        working-directory: ./documents/api-schema
+# # npm 準備
+#       - name: Setup Node
+#         uses: actions/setup-node@v2
+#         with:
+#           node-version: '16'
 
 
-      - name: OpenAPI Move files
-        run: |
-          mkdir -p ./docs/publish/api-schema
-          mv ./documents/api-schema/dist/index.html ./docs/publish/api-schema/
+# # # REST スキーマ
 
-# # GraphQL スキーマ
+#       - name: OpenAPI Setup
+#         run: npm ci
+#         working-directory: ./documents/api-schema
 
-      - name: GraphQL Setup
-        run: npm ci
-        working-directory: ./documents/graphql-schema
-
-      - name: GraphQL Make
-        run: npm run build
-        working-directory: ./documents/graphql-schema
+#       - name: OpenAPI Make
+#         run: npm run redoc
+#         working-directory: ./documents/api-schema
 
 
-      - name: GraphQL Move files
-        run: |
-          mkdir -p ./docs/publish/graphql-schema
-          mv ./documents/graphql-schema/public/* ./docs/publish/graphql-schema/
+#       - name: OpenAPI Move files
+#         run: |
+#           mkdir -p ./docs/publish/api-schema
+#           mv ./documents/api-schema/dist/index.html ./docs/publish/api-schema/
 
-# markdown to HTML
-# Gatsby
-      - name: Gatsby Setup
-        run: npm ci
-        working-directory: ./documents/design
+# # # GraphQL スキーマ
 
-      - name: Gatsby Make
-        run: npm run build
-        working-directory: ./documents/design
+#       - name: GraphQL Setup
+#         run: npm ci
+#         working-directory: ./documents/graphql-schema
 
-      - name: Gatsby Move files
-        run: |
-          mkdir -p ./docs/publish
-          mv ./documents/design/public ./docs/publish/design
-# pandoc
-      - uses: docker://pandoc/core:2.9
-        with:
-          args: >- # allows you to break string into multiple lines
-            --standalone
-            --output=docs/index.html
-            documents/index.md
+#       - name: GraphQL Make
+#         run: npm run build
+#         working-directory: ./documents/graphql-schema
+
+
+#       - name: GraphQL Move files
+#         run: |
+#           mkdir -p ./docs/publish/graphql-schema
+#           mv ./documents/graphql-schema/public/* ./docs/publish/graphql-schema/
+
+# # markdown to HTML
+# # Gatsby
+#       - name: Gatsby Setup
+#         run: npm ci
+#         working-directory: ./documents/design
+
+#       - name: Gatsby Make
+#         run: npm run build
+#         working-directory: ./documents/design
+
+#       - name: Gatsby Move files
+#         run: |
+#           mkdir -p ./docs/publish
+#           mv ./documents/design/public ./docs/publish/design
+# # pandoc
+#       - uses: docker://pandoc/core:2.9
+#         with:
+#           args: >- # allows you to break string into multiple lines
+#             --standalone
+#             --output=docs/index.html
+#             documents/index.md
 
 # component catalog
       - name: StoryBook Setup
