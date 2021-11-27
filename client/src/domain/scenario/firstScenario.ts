@@ -159,9 +159,10 @@ const events = {
 }
 export const scenario: Scenario = {
   events,
+  id: 'firstScenario',
   name: 'はじめのシナリオ',
-  excludeTags: [],
-  requireTags: [],
-  description: '最初のシナリオ',
+  // excludeTags: [],
+  // requireTags: [],
+  // description: '最初のシナリオ',
   firstEventId: 'first',
 }

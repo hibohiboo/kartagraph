@@ -28,7 +28,6 @@
   "include": [
     ".storybook",
     "client/src",
-    "client/stories",
     "client/tests"
   ]
 }
