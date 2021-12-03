@@ -5,10 +5,9 @@ import { AWSCarTaGraphClientStack } from '../lib/cdk-stack'
 import * as dotenv from 'dotenv'
 
 // typescriptで予測が効かずにundefinedがとれない
-// ;(() =>
-//   ['PROJECT_ID', 'ROOT_DOMAIN', 'DEPLOY_DOMAIN'].forEach((key) => {
-//     if (!process.env[key]) throw new Error(`please add ${key} to .env`)
-//   }))()
+// ;(['PROJECT_ID', 'ROOT_DOMAIN', 'DEPLOY_DOMAIN'] as const).forEach((key) => {
+//   if (!process.env[key]) throw new Error(`please add ${key} to .env`)
+// })
 dotenv.config()
 if (!process.env.PROJECT_ID) throw new Error(`please add PROJECT_ID to .env`)
 if (!process.env.ROOT_DOMAIN) throw new Error(`please add ROOT_DOMAIN to .env`)
