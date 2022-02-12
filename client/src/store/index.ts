@@ -1,5 +1,7 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
 import localStorageMiddleware from './middleware/localStorageMiddleware'
+import appReducer from './reducers/apps'
+import globalReducer from './reducers/globals'
 import {
   authSlice,
   charactersSlice,
@@ -13,6 +15,8 @@ export const store = configureStore({
     characters: charactersSlice.reducer,
     scenario: scenarioSlice.reducer,
     screen: screenSlice.reducer,
+    apps: appReducer,
+    global: globalReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(localStorageMiddleware),

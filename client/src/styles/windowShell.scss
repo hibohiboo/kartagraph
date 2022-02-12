@@ -1,0 +1,13 @@
+.App {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+.desktop {
+  position: absolute;
+  width: 100vw;
+  height: calc(100vh - 48px);
+  top: 0;
+  overflow: hidden;
+}

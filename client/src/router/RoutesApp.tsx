@@ -8,6 +8,8 @@ import Loading from '@/components/atoms/Loading'
 import useRouterApp from '@/hooks/useRouterApp'
 import First from '@/components/pages/First'
 //https://qiita.com/jonakp/items/5424bf89946269570496
+import WindowShell from '@/components/pages/WindowShell'
+
 function App() {
   const { authenticated } = useRouterApp()
   const navigate = useNavigate()
@@ -17,7 +19,7 @@ function App() {
   }
   return (
     <Routes>
-      <Route path="/" element={<Top />} />
+      <Route path="/" element={<WindowShell />} />
       <Route path="/scenario">
         <Route path=":id" element={<Game />} />
       </Route>
