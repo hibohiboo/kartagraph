@@ -33,3 +33,5 @@ export default apps
 export const allApps = apps.filter((app) => {
   return app.type == 'app'
 })
+export type ApplicationAction = typeof defaultApps[number]['action']
+export type ApplicationIcon = typeof defaultApps[number]['icon']

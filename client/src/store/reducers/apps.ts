@@ -1,4 +1,4 @@
-import { allApps } from '@/utils/apps'
+import { allApps, ApplicationAction, ApplicationIcon } from '@/utils/apps'
 import { AnyAction, createReducer, PayloadAction } from '@reduxjs/toolkit'
 import { Dim } from './globals'
 export type ApplicationWindowSize =
@@ -22,14 +22,19 @@ interface ApplicationProperty {
   z: number
   dim?: Dim
 }
-export type Application = 'home' | 'notepad'
-type StateKey = Application | 'hz'
+
+type StateKey = ApplicationIcon | 'hz'
 type State = {
   [K in StateKey]: K extends 'hz' ? number : ApplicationProperty
 }
 
+const actionParamMap = new Map<ApplicationAction, ApplicationIcon>()
 const defState = allApps.reduce(
   (previousValue, currentValue) => {
+    actionParamMap.set(
+      currentValue.action as ApplicationAction,
+      currentValue.icon as ApplicationIcon,
+    )
     return {
       ...previousValue,
       [currentValue.icon]: {
@@ -50,6 +55,7 @@ const newState = (
   nowObj: ApplicationProperty,
   dim?: Dim,
 ): { hz: number; obj: ApplicationProperty } => {
+  console.log('pyaloayd', payload)
   if (payload === 'full') {
     return {
       hz: nowHz + 1,
@@ -149,26 +155,29 @@ const newState = (
 
 export type ApplicatioonResizeAction = PayloadAction<
   ApplicationWindowSize,
-  Application,
+  ApplicationAction,
   Dim | undefined
 >
 
 const isApplicationAction = (
   action: AnyAction,
 ): action is ApplicatioonResizeAction => {
-  return ['home', 'notepad'].includes(action.type)
+  return ['NOTEPAD'].includes(action.type)
 }
 
 const appReducer = createReducer(defState, (builder) => {
   builder.addMatcher(isApplicationAction, (state, action) => {
+    const key = actionParamMap.get(action.type)
+    if (!key) return
     const { hz, obj } = newState(
       action.payload,
       state.hz,
-      state[action.type],
+      state[key],
       action.meta,
     )
     state.hz = hz
-    state[action.type] = obj
+    state[key] = obj
+    state[key].hide = false
   })
 })
 export default appReducer

@@ -1,7 +1,7 @@
 import { useAppSelector } from '@/store/hooks'
-import { appSelector, notepadSelector } from '@/store/selectors/apps'
-import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { notepadSelector } from '@/store/selectors/apps'
+import React from 'react'
+
 import { ToolBar } from '../../../utils/general'
 
 export const Notepad: React.FC = () => {
