@@ -113,7 +113,7 @@ export const ToolBar: React.FC<{
     wnapp.classList.remove('notrans')
     wnapp.classList.remove('z9900')
 
-    var action = {
+    const action = {
       type: props.app,
       payload: 'resize',
       dim: {

@@ -1,10 +1,10 @@
 import { useAppSelector } from '@/store/hooks'
 import {
-  Application,
   ApplicationWindowSize,
   ApplicatioonResizeAction,
 } from '@/store/reducers/apps'
 import { laysSelector } from '@/store/selectors/global'
+import { ApplicationAction } from '@/utils/apps'
 import React, { MouseEventHandler, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 
@@ -20,7 +20,7 @@ export const SnapScreen: React.FC<{
 
   const clickDispatch: MouseEventHandler<HTMLDivElement> = (event) => {
     const dataset = (event.target as any).dataset as {
-      action: Application
+      action: ApplicationAction
       payload: ApplicationWindowSize
       dim: string
     }
@@ -55,10 +55,10 @@ export const SnapScreen: React.FC<{
               <div
                 className="snapper"
                 style={{
-                  borderTopLeftRadius: (y.br % 2) * 4,
-                  borderTopRightRadius: (y.br % 3) * 4,
-                  borderBottomRightRadius: (y.br % 5) * 4,
-                  borderBottomLeftRadius: (y.br % 7) * 4,
+                  borderTopLeftRadius: y.br % 2 === 0 ? 4 : 0,
+                  borderTopRightRadius: y.br % 3 === 0 ? 4 : 0,
+                  borderBottomRightRadius: y.br % 5 === 0 ? 4 : 0,
+                  borderBottomLeftRadius: y.br % 7 === 0 ? 4 : 0,
                 }}
                 onClick={clickDispatch}
                 data-dim={JSON.stringify(y.dim)}
