@@ -1,14 +1,14 @@
-import * as core from '@aws-cdk/core'
-import * as s3 from '@aws-cdk/aws-s3'
-import * as cf from '@aws-cdk/aws-cloudfront'
-import * as iam from '@aws-cdk/aws-iam'
-import * as s3deploy from '@aws-cdk/aws-s3-deployment'
+import * as core from 'aws-cdk-lib'
+import * as s3 from 'aws-cdk-lib/aws-s3'
+import * as cf from 'aws-cdk-lib/aws-cloudfront'
+import * as iam from 'aws-cdk-lib/aws-iam'
+import * as s3deploy from 'aws-cdk-lib/aws-s3-deployment'
 import { basePath } from '../constants/paths'
-import * as origins from '@aws-cdk/aws-cloudfront-origins'
-import * as route53 from '@aws-cdk/aws-route53'
-import * as route53Targets from '@aws-cdk/aws-route53-targets'
-import * as certManager from '@aws-cdk/aws-certificatemanager'
-
+import * as origins from 'aws-cdk-lib/aws-cloudfront-origins'
+import * as route53 from 'aws-cdk-lib/aws-route53'
+import * as route53Targets from 'aws-cdk-lib/aws-route53-targets'
+import * as certManager from 'aws-cdk-lib/aws-certificatemanager'
+import { Construct } from 'constructs'
 interface Props extends core.StackProps {
   bucketName: string
   identityName: string
@@ -22,7 +22,7 @@ interface Props extends core.StackProps {
 }
 
 export class AWSCarTaGraphClientStack extends core.Stack {
-  constructor(scope: core.Construct, id: string, props: Props) {
+  constructor(scope: Construct, id: string, props: Props) {
     super(scope, id, props)
     // CloudFront オリジン用のS3バケットを作成
     const bucket = this.createS3(props.bucketName)
