@@ -63,6 +63,7 @@ export class AWSCarTaGraphClientStack extends core.Stack {
       accessControl: s3.BucketAccessControl.PRIVATE,
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
       removalPolicy: core.RemovalPolicy.DESTROY,
+      autoDeleteObjects: true,
       cors: [
         {
           allowedMethods: [s3.HttpMethods.GET],
