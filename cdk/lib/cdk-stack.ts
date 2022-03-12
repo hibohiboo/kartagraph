@@ -9,6 +9,7 @@ import * as route53 from 'aws-cdk-lib/aws-route53'
 import * as route53Targets from 'aws-cdk-lib/aws-route53-targets'
 import * as certManager from 'aws-cdk-lib/aws-certificatemanager'
 import { Construct } from 'constructs'
+
 interface Props extends core.StackProps {
   bucketName: string
   identityName: string
@@ -132,6 +133,22 @@ export class AWSCarTaGraphClientStack extends core.Stack {
     const origin = new origins.S3Origin(bucket, {
       originAccessIdentity: identity,
     })
+    const spaRoutingFunction = new cf.Function(this, 'SpaRoutingFunction', {
+      functionName: 'SpaRoutingFunction',
+      // 拡張子が含まれないURLはSPAファイルにリダイレクト
+      code: cf.FunctionCode.fromInline(`
+      function handler(event) {
+        var request = event.request;
+        if(request.uri.startsWith('/cartagraph-editor') && !request.uri.includes('.')) {
+          request.uri = '/cartagraph-editor/index.html';
+        } else if (!request.uri.includes('.')){
+          request.uri = '/cartagraph/index.html';
+        }
+        return request;
+      }
+      `),
+    })
+    core.Tags.of(spaRoutingFunction).add('Service', 'Cloud Front Function')
 
     const d = new cf.Distribution(this, distributionName, {
       // enableIpV6: true,
@@ -146,21 +163,28 @@ export class AWSCarTaGraphClientStack extends core.Stack {
         cachedMethods: cf.CachedMethods.CACHE_GET_HEAD,
         cachePolicy: myCachePolicy,
         viewerProtocolPolicy: cf.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+        functionAssociations: [
+          {
+            eventType: cf.FunctionEventType.VIEWER_REQUEST,
+            function: spaRoutingFunction,
+          },
+        ],
       },
-      errorResponses: [
-        {
-          httpStatus: 404,
-          responseHttpStatus: 200,
-          responsePagePath: '/cartagraph/index.html',
-          ttl: core.Duration.seconds(0),
-        },
-        {
-          httpStatus: 403,
-          responseHttpStatus: 200,
-          responsePagePath: '/index.html',
-          ttl: core.Duration.seconds(0),
-        },
-      ],
+
+      // errorResponses: [
+      //   {
+      //     httpStatus: 404,
+      //     responseHttpStatus: 200,
+      //     responsePagePath: '/cartagraph/index.html',
+      //     ttl: core.Duration.seconds(0),
+      //   },
+      //   {
+      //     httpStatus: 403,
+      //     responseHttpStatus: 200,
+      //     responsePagePath: '/index.html',
+      //     ttl: core.Duration.seconds(0),
+      //   },
+      // ],
       // 2021.09.05 GUIコンソール上の推奨とCDKのデフォルト値がずれていたので明示
       minimumProtocolVersion: cf.SecurityPolicyProtocol.TLS_V1_2_2021,
       // Route53と連携するためのカスタムドメイン
