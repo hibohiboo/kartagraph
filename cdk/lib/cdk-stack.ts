@@ -108,13 +108,13 @@ export class AWSCarTaGraphClientStack extends core.Stack {
   ) {
     const defaultPolicyOption = {
       cachePolicyName: defaultCachePolicyName,
-      comment: 'A default policy',
-      defaultTtl: core.Duration.days(2),
-      minTtl: core.Duration.seconds(0), // core.Duration.minutes(1),
-      maxTtl: core.Duration.days(365), // core.Duration.days(10),
-      cookieBehavior: cf.CacheCookieBehavior.all(),
-      headerBehavior: cf.CacheHeaderBehavior.none(),
-      queryStringBehavior: cf.CacheQueryStringBehavior.none(),
+      comment: 'カルタグラフポリシー',
+      // defaultTtl: core.Duration.days(2),
+      // minTtl: core.Duration.seconds(0), // core.Duration.minutes(1),
+      // maxTtl: core.Duration.days(365), // core.Duration.days(10),
+      // cookieBehavior: cf.CacheCookieBehavior.all(),
+      // headerBehavior: cf.CacheHeaderBehavior.none(),
+      // queryStringBehavior: cf.CacheQueryStringBehavior.none(),
       enableAcceptEncodingGzip: true,
       enableAcceptEncodingBrotli: true,
     }
@@ -159,8 +159,8 @@ export class AWSCarTaGraphClientStack extends core.Stack {
       priceClass: cf.PriceClass.PRICE_CLASS_200,
       defaultBehavior: {
         origin,
-        allowedMethods: cf.AllowedMethods.ALLOW_GET_HEAD,
-        cachedMethods: cf.CachedMethods.CACHE_GET_HEAD,
+        // allowedMethods: cf.AllowedMethods.ALLOW_GET_HEAD,
+        // cachedMethods: cf.CachedMethods.CACHE_GET_HEAD,
         cachePolicy: myCachePolicy,
         viewerProtocolPolicy: cf.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
         functionAssociations: [
