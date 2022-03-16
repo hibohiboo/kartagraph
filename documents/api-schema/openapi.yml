@@ -10,12 +10,14 @@ info:
     name: MIT
     url: https://opensource.org/licenses/MIT
 servers:
-  - url: https://script.google.com
+  - url: "{{OutputApiUrl}}"
 paths:
   /users:
     $ref: ./paths/sample-users.yml
   /users/{user_id}:
     $ref: ./paths/sample-users-by-id.yml
+  /scenario:
+    $ref: ./paths/cartagraph.yml
 
 components:
   schemas:
@@ -25,3 +27,6 @@ components:
       $ref: ./components/schemas/sample/user.yml
     UserInput:
       $ref: ./components/schemas/sample/user_input.yml
+  securitySchemes:
+    OAuth2:
+      $ref: ./components/schemas/oauth2.yml

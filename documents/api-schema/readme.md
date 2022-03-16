@@ -1,3 +1,7 @@
+## 注意
+
+.env.sample を.env に変更し、適切な値に書き換えてください。
+
 ## 参考
 
 [openapi3.1](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md)

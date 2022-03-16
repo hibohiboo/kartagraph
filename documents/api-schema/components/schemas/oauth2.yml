@@ -1,0 +1,9 @@
+
+type: oauth2
+description: For more information, see https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-userpools-server-contract-reference.html
+flows:
+  authorizationCode:
+    authorizationUrl: https://{{OutputDomainPrefix}}.auth.ap-northeast-1.amazoncognito.com/oauth2/authorize
+    tokenUrl: https://{{OutputDomainPrefix}}.auth.ap-northeast-1.amazoncognito.com/oauth2/token
+    scopes:
+      openid: openid token
