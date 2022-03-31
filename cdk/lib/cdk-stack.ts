@@ -20,6 +20,7 @@ interface Props extends core.StackProps {
   rootDomain: string
   deployDomain: string
   projectNameTag: string
+  restApiUrl: string
 }
 
 export class AWSCarTaGraphClientStack extends core.Stack {
@@ -43,9 +44,10 @@ export class AWSCarTaGraphClientStack extends core.Stack {
       props.imageCachePolicyName,
       props.distributionName,
       props.deployDomain,
+      props.restApiUrl,
     )
-    // 指定したディレクトリをデプロイ
-    this.deployS3(bucket, distribution, '../client/build', props.bucketName)
+    // // 指定したディレクトリをデプロイ
+    // this.deployS3(bucket, distribution, '../client/build', props.bucketName)
 
     // route53 の CloudFrontに紐づくレコード作成
     this.addRoute53Records(zone, props.deployDomain, distribution)
@@ -105,6 +107,7 @@ export class AWSCarTaGraphClientStack extends core.Stack {
     imageCachePolicyName: string,
     distributionName: string,
     deployDomain: string,
+    restApiUrl: string,
   ) {
     const defaultPolicyOption = {
       cachePolicyName: defaultCachePolicyName,
@@ -141,15 +144,24 @@ export class AWSCarTaGraphClientStack extends core.Stack {
         var request = event.request;
         if(request.uri.startsWith('/cartagraph-editor') && !request.uri.includes('.')) {
           request.uri = '/cartagraph-editor/index.html';
+        } else if(request.uri.startsWith('/cartagraph-gamebook') && !request.uri.includes('.')) {
+          request.uri = '/cartagraph-gamebook/index.html';
         } else if (!request.uri.includes('.')){
           request.uri = '/cartagraph/index.html';
-        }
+        } 
         return request;
       }
       `),
     })
     core.Tags.of(spaRoutingFunction).add('Service', 'Cloud Front Function')
-
+    const apiEndPointUrlWithoutProtocol = core.Fn.select(
+      1,
+      core.Fn.split('://', restApiUrl),
+    )
+    const apiEndPointDomainName = core.Fn.select(
+      0,
+      core.Fn.split('/', apiEndPointUrlWithoutProtocol),
+    )
     const d = new cf.Distribution(this, distributionName, {
       // enableIpV6: true,
       // httpVersion: cf.HttpVersion.HTTP2,
@@ -169,6 +181,30 @@ export class AWSCarTaGraphClientStack extends core.Stack {
             function: spaRoutingFunction,
           },
         ],
+      },
+      additionalBehaviors: {
+        'v1/*': {
+          origin: new origins.HttpOrigin(apiEndPointDomainName, {
+            // originPath: `/v1`,
+          }),
+          allowedMethods: cf.AllowedMethods.ALLOW_ALL,
+          viewerProtocolPolicy: cf.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+          cachePolicy: new cf.CachePolicy(
+            this,
+            `${distributionName}-rest-api-cache-policy`,
+            {
+              cachePolicyName: `${distributionName}-rest-api-cache-policy`,
+              comment: 'CloudFront + ApiGateway用ポリシー',
+              // defaultTtl: core.Duration.seconds(0),
+              // maxTtl: core.Duration.seconds(0),
+              // minTtl: core.Duration.seconds(0),
+              headerBehavior: cf.CacheHeaderBehavior.allowList(
+                'x-api-key',
+                'content-type',
+              ),
+            },
+          ),
+        },
       },
 
       // errorResponses: [
@@ -196,25 +232,25 @@ export class AWSCarTaGraphClientStack extends core.Stack {
     return d
   }
 
-  private deployS3(
-    siteBucket: s3.Bucket,
-    distribution: cf.Distribution,
-    sourcePath: string,
-    bucketName: string,
-  ) {
-    // Deploy site contents to S3 bucket
-    new s3deploy.BucketDeployment(
-      this,
-      `${bucketName}-deploy-with-invalidation`,
-      {
-        sources: [s3deploy.Source.asset(sourcePath)],
-        destinationBucket: siteBucket,
-        distribution,
-        distributionPaths: ['/*'],
-        destinationKeyPrefix: basePath,
-      },
-    )
-  }
+  // private deployS3(
+  //   siteBucket: s3.Bucket,
+  //   distribution: cf.Distribution,
+  //   sourcePath: string,
+  //   bucketName: string,
+  // ) {
+  //   // Deploy site contents to S3 bucket
+  //   new s3deploy.BucketDeployment(
+  //     this,
+  //     `${bucketName}-deploy-with-invalidation`,
+  //     {
+  //       sources: [s3deploy.Source.asset(sourcePath)],
+  //       destinationBucket: siteBucket,
+  //       distribution,
+  //       distributionPaths: ['/*'],
+  //       destinationKeyPrefix: basePath,
+  //     },
+  //   )
+  // }
 
   private findRoute53HostedZone(rootDomain: string) {
     return route53.HostedZone.fromLookup(this, `${rootDomain}-hosted-zone`, {

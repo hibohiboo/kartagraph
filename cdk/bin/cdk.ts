@@ -10,6 +10,7 @@ const envList = [
   'ROOT_DOMAIN',
   'DEPLOY_DOMAIN',
   'TAG_PROJECT_NAME',
+  'REST_API_URL',
 ] as const
 for (const key of envList) {
   if (!process.env[key]) throw new Error(`please add ${key} to .env`)
@@ -33,5 +34,6 @@ new AWSCarTaGraphClientStack(app, `${projectId}-stack`, {
   rootDomain: processEnv.ROOT_DOMAIN,
   deployDomain: processEnv.DEPLOY_DOMAIN,
   projectNameTag: processEnv.TAG_PROJECT_NAME,
+  restApiUrl: processEnv.REST_API_URL,
   env,
 })
