@@ -21,6 +21,7 @@ interface Props extends core.StackProps {
   deployDomain: string
   projectNameTag: string
   restApiUrl: string
+  apiKey: string
 }
 
 export class AWSCarTaGraphClientStack extends core.Stack {
@@ -36,16 +37,7 @@ export class AWSCarTaGraphClientStack extends core.Stack {
     const zone = this.findRoute53HostedZone(props.rootDomain)
     const cert = this.createTLSCertificate(props.deployDomain, zone)
     // CloudFrontディストリビューションを作成
-    const distribution = this.createCloudFront(
-      bucket,
-      identity,
-      cert,
-      props.defaultCachePolicyName,
-      props.imageCachePolicyName,
-      props.distributionName,
-      props.deployDomain,
-      props.restApiUrl,
-    )
+    const distribution = this.createCloudFront(bucket, identity, cert, props)
     // // 指定したディレクトリをデプロイ
     // this.deployS3(bucket, distribution, '../client/build', props.bucketName)
 
@@ -103,12 +95,22 @@ export class AWSCarTaGraphClientStack extends core.Stack {
     bucket: s3.Bucket,
     identity: cf.OriginAccessIdentity,
     cert: certManager.DnsValidatedCertificate,
-    defaultCachePolicyName: string,
-    imageCachePolicyName: string,
-    distributionName: string,
-    deployDomain: string,
-    restApiUrl: string,
+    props: {
+      defaultCachePolicyName: string
+      imageCachePolicyName: string
+      distributionName: string
+      deployDomain: string
+      restApiUrl: string
+      apiKey: string
+    },
   ) {
+    const {
+      defaultCachePolicyName,
+      imageCachePolicyName,
+      distributionName,
+      deployDomain,
+      restApiUrl,
+    } = props
     const defaultPolicyOption = {
       cachePolicyName: defaultCachePolicyName,
       comment: 'カルタグラフポリシー',
@@ -186,6 +188,9 @@ export class AWSCarTaGraphClientStack extends core.Stack {
         'v1/*': {
           origin: new origins.HttpOrigin(apiEndPointDomainName, {
             // originPath: `/v1`,
+            customHeaders: {
+              'x-api-key': props.apiKey,
+            },
           }),
           allowedMethods: cf.AllowedMethods.ALLOW_ALL,
           viewerProtocolPolicy: cf.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
