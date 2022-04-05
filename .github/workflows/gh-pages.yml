@@ -78,7 +78,7 @@ jobs:
           mkdir -p ./docs/publish
           mv ./documents/design/public ./docs/publish/design
 # pandoc
-      - uses: docker://pandoc/core:2.9
+      - uses: docker://pandoc/core:2.18
         with:
           args: >- # allows you to break string into multiple lines
             --standalone
