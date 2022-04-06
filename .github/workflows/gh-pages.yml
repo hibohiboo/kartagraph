@@ -92,7 +92,7 @@ jobs:
         working-directory: ./documents/components-catalog
 
       - name: StoryBook Make
-        run: npx build-storybook -c ./.storybook -o ./components-catalog --no-dll
+        run: npx build-storybook -c ./.storybook -o ./components-catalog
         working-directory: ./documents/components-catalog
 
       - name: StoryBook Move files
