@@ -18,6 +18,11 @@ paths:
     $ref: ./paths/sample-users-by-id.yml
   /scenario:
     $ref: ./paths/cartagraph.yml
+  /api/logs/paragraph-move/{yyyy}/{MM}/{dd}/{uid}:
+    $ref: ./paths/logs.yml
+  /api/paragraphs/{uid}/{pid}:
+    $ref: ./paths/logs.yml
+  
 
 components:
   schemas:

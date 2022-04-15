@@ -1,0 +1,36 @@
+put:
+  operationId: logs
+  requestBody:
+    description: user information
+    required: true
+    content:
+      application/json:
+        schema:
+          required:
+            - uid
+            - id
+          properties:
+            uid:
+              type: string
+            id:
+              type: string
+            title:
+              type: string
+            text:
+              type: string
+            exLinks:
+              type: string
+            links:
+              type: array
+              items:
+                required:
+                  - label
+                  - to
+                properties:
+                  to:
+                    type: string
+                  label:
+                    type: string
+  responses:
+    202:
+      description: 202 OK
