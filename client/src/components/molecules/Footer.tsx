@@ -25,7 +25,7 @@ const css: Record<string, React.CSSProperties> = {
     alignItems: 'center',
   },
 } as const
-const Footer: React.FC = ({ children }) => (
+const Footer: React.FC = () => (
   <div style={css.wrapper}>
     <Link style={css.button} to="/about">
       メイン

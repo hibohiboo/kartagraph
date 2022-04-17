@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import ScrollableBox from '../atoms/ScrollableBox'
 import TopBase from '../templates/TopBase'
 
-const Agreement: React.FC = ({ children }) => (
+const Agreement: React.FC = () => (
   <TopBase
     content={
       <ScrollableBox

@@ -1,8 +1,6 @@
 import React from 'react'
 
-import { Link } from 'react-router-dom'
-
-const About: React.FC = ({ children }) => (
+const About: React.FC = () => (
   <div>
     <div>
       <h1>プライバシーポリシー</h1>

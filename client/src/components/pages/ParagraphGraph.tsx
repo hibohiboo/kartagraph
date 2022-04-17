@@ -1,13 +1,12 @@
-import { async } from '@firebase/util'
 import React, { useEffect, useRef } from 'react'
 import { Node, Edge, Network } from 'vis-network'
 
 const ParagraphGraph: React.FC = ({}) => {
   // ref が参照できるように、textInput をここで宣言する必要があります。
-  const svgRef = useRef<HTMLDivElement>(null)
+  const ref = useRef<HTMLDivElement>(null)
   useEffect(() => {
     ;(async () => {
-      if (!svgRef || !svgRef.current) {
+      if (!ref || !ref.current) {
         return
       }
       const [nodes, edges]: [Node[], Edge[]] = await Promise.all([
@@ -15,7 +14,7 @@ const ParagraphGraph: React.FC = ({}) => {
         (await fetch('/data/paragraph/edges.json')).json(),
       ])
       // create a network
-      const container = svgRef.current
+      const container = ref.current
       const data = {
         nodes: nodes,
         edges: edges,
@@ -30,12 +29,12 @@ const ParagraphGraph: React.FC = ({}) => {
         }
       })
     })()
-  }, [svgRef])
+  }, [ref])
 
   return (
     <div>
       <div
-        ref={svgRef}
+        ref={ref}
         style={{
           width: '80vw',
           height: '80vh',

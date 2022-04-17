@@ -12,10 +12,11 @@ const useRouterApp = () => {
   const dispatch = useDispatch()
 
   const refresh = React.useCallback(
-    async (uid) => {
+    async (uid: any) => {
       const userData = {
         uid,
       }
+      //@ts-ignore
       return dispatch(login(userData))
     },
     [dispatch],
@@ -24,12 +25,14 @@ const useRouterApp = () => {
     const f = async () => {
       onAuthStateChanged(auth, async (user) => {
         if (!user) {
+          //@ts-ignore
           dispatch(login({}))
         }
         if (user && !authenticated) {
           return await refresh(user.uid)
         }
         if (!user && !authenticated) {
+          //@ts-ignore
           dispatch(logout())
         }
       })

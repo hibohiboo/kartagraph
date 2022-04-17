@@ -1,5 +1,6 @@
 import React from 'react'
 import type { SaveCharacter } from '@/domain/character'
+// @ts-ignore
 import { useForm } from 'react-hook-form'
 
 export default function CharacterForm({
@@ -13,7 +14,7 @@ export default function CharacterForm({
     formState: { errors },
     reset,
   } = useForm()
-  const onSubmit = async (data: { name: string }) => {
+  const onSubmit = async (data: any) => {
     console.log('data', data)
     saveCharacter(data.name)
     reset()

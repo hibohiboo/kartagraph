@@ -63,7 +63,7 @@ const FirstNumber: React.FC = () => {
   }
 }
 
-const First: React.FC = ({ children }) => {
+const First: React.FC = () => {
   return (
     <Base
       header={<DefaultDiv />}

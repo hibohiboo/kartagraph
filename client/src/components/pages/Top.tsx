@@ -28,7 +28,7 @@ const css: Record<string, React.CSSProperties> = {
   },
 } as const
 
-const Top: React.FC = ({ children }) => {
+const Top: React.FC = () => {
   const characters = useAppSelector(charactersSelector)
   const pagePath = characters.length === 0 ? '/first/1' : '/scenario/first'
   return (
@@ -36,7 +36,7 @@ const Top: React.FC = ({ children }) => {
       content={
         <div style={css.body}>
           <div>
-            <span style={css.subtitle}>電脳ゲームブック</span>
+            <span style={css.subtitle}>電脳ゲームブック.</span>
             <Link style={css.mainTitle} to={pagePath}>
               カルタグラフ
             </Link>

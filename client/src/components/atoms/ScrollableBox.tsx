@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react'
 
-const ScrollableBox: React.FC<{ style?: CSSProperties }> = ({
+const ScrollableBox: React.FC<{ style?: CSSProperties; children: any }> = ({
   children,
   style,
 }) => (

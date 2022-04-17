@@ -10,7 +10,7 @@
     "cdk": "cdk",
     "bundle": "cdk synth > cdk.out/template.yml",
     "pipeline-deploy": "cdk deploy --require-approval never --all",
-    "deploy": "cdk deploy --profile produser"
+    "deploy": "cdk deploy aws-cartagraph-stack aws-cartagraph-deploy-stack --profile produser"
   },
   "devDependencies": {
     "@aws-cdk/assert": "2.20.0",
