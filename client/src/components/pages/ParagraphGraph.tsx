@@ -1,49 +1,48 @@
+import { async } from '@firebase/util'
 import React, { useEffect, useRef } from 'react'
-import { Network } from 'vis-network'
+import { Node, Edge, Network } from 'vis-network'
 
-const nodes = [
-  { id: 1, label: 'Node 1' },
-  { id: 2, label: 'Node 2' },
-  { id: 3, label: 'Node 3' },
-  { id: 4, label: 'Node 4' },
-  { id: 5, label: 'Node 5' },
-]
-
-const edges = [
-  { from: 1, to: 3 },
-  { from: 1, to: 2 },
-  { from: 2, to: 4 },
-  { from: 2, to: 5 },
-  { from: 3, to: 3 },
-]
 const ParagraphGraph: React.FC = ({}) => {
   // ref が参照できるように、textInput をここで宣言する必要があります。
   const svgRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
-    if (!svgRef || !svgRef.current) {
-      return
-    }
+    ;(async () => {
+      if (!svgRef || !svgRef.current) {
+        return
+      }
+      const [nodes, edges]: [Node[], Edge[]] = await Promise.all([
+        (await fetch('/data/paragraph/nodes.json')).json(),
+        (await fetch('/data/paragraph/edges.json')).json(),
+      ])
+      // create a network
+      const container = svgRef.current
+      const data = {
+        nodes: nodes,
+        edges: edges,
+      }
+      const options = {}
 
-    // create a network
-    var container = svgRef.current
-    var data = {
-      nodes: nodes,
-      edges: edges,
-    }
-    var options = {}
-
-    var network = new Network(container, data, options)
+      const network = new Network(container, data, options)
+      network.on('click', ({ nodes }) => {
+        if (nodes.length === 1) {
+          const [nodeId] = nodes
+          window.open(`/cartagraph-gamebook/public/${nodeId}`, '_blank')
+        }
+      })
+    })()
   }, [svgRef])
 
   return (
-    <div
-      ref={svgRef}
-      style={{
-        width: '600px',
-        height: '400px',
-        border: '1px solid lightgray',
-      }}
-    ></div>
+    <div>
+      <div
+        ref={svgRef}
+        style={{
+          width: '80vw',
+          height: '80vh',
+          border: '1px solid lightgray',
+        }}
+      ></div>
+    </div>
   )
 }
 export default ParagraphGraph
