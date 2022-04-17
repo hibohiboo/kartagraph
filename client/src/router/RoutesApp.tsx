@@ -8,7 +8,8 @@ import Loading from '@/components/atoms/Loading'
 import useRouterApp from '@/hooks/useRouterApp'
 import First from '@/components/pages/First'
 //https://qiita.com/jonakp/items/5424bf89946269570496
-import WindowShell from '@/components/pages/WindowShell'
+
+import ParagraphGraph from '@/components/pages/ParagraphGraph'
 
 function App() {
   const { authenticated } = useRouterApp()
@@ -19,13 +20,13 @@ function App() {
   }
   return (
     <Routes>
-      <Route path="/" element={<WindowShell />} />
       <Route path="/scenario">
         <Route path=":id" element={<Game />} />
       </Route>
       <Route path="/privacy" element={<PrivacyPolicy />} />
       <Route path="/agreement" element={<Agreement />} />
       <Route path="/first/*" element={<First />} />
+      <Route path="/gamebook-paragraph" element={<ParagraphGraph />} />
     </Routes>
   )
 }

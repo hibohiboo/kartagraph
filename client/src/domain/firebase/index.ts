@@ -3,7 +3,7 @@ import { getAuth, browserSessionPersistence } from 'firebase/auth'
 import { getAnalytics, logEvent } from 'firebase/analytics'
 import config from './config'
 import type { ReportHandler } from 'web-vitals'
-
+console.warn('test', config)
 const firebaseApp = initializeApp(config)
 export const auth = getAuth(firebaseApp)
 const analytics = getAnalytics(firebaseApp)
