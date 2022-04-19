@@ -1,46 +1,37 @@
 {
   "OBJECT": {
-    "SecretType": {
-      "documentation": { "undocumented": true }
-    },
-    "MyType": {
+    "Mutation": {
       "fields": {
-        "nonRequiredField": {
-          "documentation": { "example": "Metadata example of `nonRequiredField`"}
-        }
-      }
-    },
-    "Query": {
-      "fields": {
-        "myQuery": {
+        "insert_user_paragraph_history": {
           "args": {
-            "nonReqQueryArg": {
-              "documentation": { "example": "Metadata example of `nonReqQueryArg`" }
+            "objects": {
+              "documentation": {
+                "example": "test"
+              }
             }
           }
         }
       }
     }
   },
-  "SCALAR": {
-    "DateTime": {
-      "documentation": { "example": "\"2016-10-07T01:08:03.420Z\"" }
-    }
-  },
   "INPUT_OBJECT": {
-    "FilterType": {
+    "user_paragraph_history": {
       "inputFields": {
-        "someField": {
-          "documentation": { "example": true }
+        "uid": {
+          "documentation": {
+            "example": "firebase_uid",
+            "description": "test"
+          }
         },
-        "anotherField": {
-          "documentation": { "example": "Metadata example of `anotherField`" }
+        "pid": {
+          "documentation": {
+            "example": "マルチバイトを含んだ文字列"
+          }
         },
-        "lastName": {
-          "documentation": { "example": "Doe" }
-        },
-        "episodeEnums": {
-          "documentation": { "example": ["EMPIRE"] }
+        "moved_epoctime": {
+          "documentation": {
+            "example": 1650408930601
+          }
         }
       }
     }

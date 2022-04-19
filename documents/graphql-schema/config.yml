@@ -3,13 +3,13 @@ spectaql:
   faviconFile: ./fixtures/favicon.png
 
 introspection:
-  schemaFile: ./data/schema.gql
+  schemaFile: ./data/schema-cartagraph.gql
   metadataFile: ./data/metadata.json
   dynamicExamplesProcessingModule: ./customizations/examples
 
 info:
-  title: GraphQL API Reference
-  description: Welcome to the party!
+  title: CarTaGraph API Reference
+  description: Hasura への 問い合わせクエリ
   termsOfService: https://www.example.com/terms
   contact:
     name: API Support

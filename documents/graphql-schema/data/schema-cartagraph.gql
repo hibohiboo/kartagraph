@@ -1,0 +1,54 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Mutation {
+  "ユーザのパラグラフ遷移履歴保存"
+  insert_user_paragraph_history(
+    objects: [user_paragraph_history!]!
+    on_conflict: user_paragraph_history_on_conflict
+  ): mutation_response
+}
+
+input user_paragraph_history {
+  "firebaseのUID"
+  uid: String!
+  "パラグラフID。日本語含む文字列"
+  pid: String!
+  "移動したUNIXTIME（ミリ秒）"
+  moved_epoctime: Int!
+}
+scalar user_paragraph_history_pkey
+input user_paragraph_history_on_conflict {
+  constraint: user_paragraph_history_pkey
+  "全て主キーなので空配列を指定"
+  update_columns: [String]! = []
+}
+
+#  mutaion を行った結果返ってくる respose の type
+type mutation_response {
+  # mutation によって影響を受けた row の数
+  affected_rows: Int!
+
+  # mutation によって影響を受けた row の情報
+  # returning: [article!]!
+}
+
+type Query {
+  getRelation: paragraphs_relation
+  getParagraphs: paragraphs
+}
+
+type paragraphs_relation {
+  "パラグラフID"
+  from: String!
+  "パラグラフID"
+  to: String!
+}
+type paragraphs {
+  "パラグラフID"
+  pid: String!
+  "パラグラフのタイトル"
+  title: String!
+}

@@ -10,6 +10,6 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "spectaql": "^1.0.7"
+    "spectaql": "^1.1.0"
   }
 }
