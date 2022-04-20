@@ -9,16 +9,18 @@ type Mutation {
     objects: [user_paragraph_history!]!
     on_conflict: user_paragraph_history_on_conflict
   ): mutation_response
+  "パラグラフとリンクを更新"
   UpdateParagraphs: UpdateParagraphs
 }
 type UpdateParagraphs {
-  "更新前に関係の削除"
+  "更新前にリンクの削除"
   delete_paragraphs_relation(where: deleteWhere): mutation_response
   "パラグラフを更新"
   insert_paragraphs_one(
     on_conflict: insert_paragraphs_one_on_conflict
     object: Paragraph
   ): insert_paragraphs_one_response
+  "リンクを挿入"
   insert_paragraphs_relation(
     objects: [Relation]
     on_conflict: insert_paragraphs_relation_onconflict
