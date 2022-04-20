@@ -9,8 +9,54 @@ type Mutation {
     objects: [user_paragraph_history!]!
     on_conflict: user_paragraph_history_on_conflict
   ): mutation_response
+  UpdateParagraphs: UpdateParagraphs
+}
+type UpdateParagraphs {
+  "更新前に関係の削除"
+  delete_paragraphs_relation(where: deleteWhere): mutation_response
+  "パラグラフを更新"
+  insert_paragraphs_one(
+    on_conflict: insert_paragraphs_one_on_conflict
+    object: Paragraph
+  ): insert_paragraphs_one_response
+  insert_paragraphs_relation(
+    objects: [Relation]
+    on_conflict: insert_paragraphs_relation_onconflict
+  ): mutation_response
+}
+input Relation {
+  "パラグラフID"
+  from: String
+  "パラグラフID"
+  to: String
+}
+scalar paragraphs_relation_pkey
+input insert_paragraphs_relation_onconflict {
+  constraint: paragraphs_relation_pkey
+  update_columns: [String] = []
+}
+type insert_paragraphs_one_response {
+  "挿入したパラグラフID"
+  pid: String
+}
+scalar paragraphs_pkey
+scalar paragraph
+input insert_paragraphs_one_on_conflict {
+  constraint: paragraphs_pkey
+  update_columns: paragraph
+}
+input Paragraph {
+  paragraph: String
+  pid: String
+  title: String
 }
 
+input whereEq {
+  _eq: String
+}
+input deleteWhere {
+  from: whereEq
+}
 input user_paragraph_history {
   "firebaseのUID"
   uid: String!
