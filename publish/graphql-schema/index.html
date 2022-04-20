@@ -49,6 +49,9 @@
                 </h5>
                 <ul class="nav-group-section-items">
                   <li>
+                    <a href="#mutation-UpdateParagraphs">UpdateParagraphs</a>
+                  </li>
+                  <li>
                     <a href="#mutation-insert_user_paragraph_history">insert_user_paragraph_history</a>
                   </li>
                 </ul>
@@ -65,16 +68,46 @@
                 <a href="#definition-Int">Int</a>
               </li>
               <li>
+                <a href="#definition-Paragraph">Paragraph</a>
+              </li>
+              <li>
+                <a href="#definition-Relation">Relation</a>
+              </li>
+              <li>
                 <a href="#definition-String">String</a>
+              </li>
+              <li>
+                <a href="#definition-UpdateParagraphs">UpdateParagraphs</a>
+              </li>
+              <li>
+                <a href="#definition-deleteWhere">deleteWhere</a>
+              </li>
+              <li>
+                <a href="#definition-insert_paragraphs_one_on_conflict">insert_paragraphs_one_on_conflict</a>
+              </li>
+              <li>
+                <a href="#definition-insert_paragraphs_one_response">insert_paragraphs_one_response</a>
+              </li>
+              <li>
+                <a href="#definition-insert_paragraphs_relation_onconflict">insert_paragraphs_relation_onconflict</a>
               </li>
               <li>
                 <a href="#definition-mutation_response">mutation_response</a>
               </li>
               <li>
+                <a href="#definition-paragraph">paragraph</a>
+              </li>
+              <li>
                 <a href="#definition-paragraphs">paragraphs</a>
               </li>
               <li>
+                <a href="#definition-paragraphs_pkey">paragraphs_pkey</a>
+              </li>
+              <li>
                 <a href="#definition-paragraphs_relation">paragraphs_relation</a>
+              </li>
+              <li>
+                <a href="#definition-paragraphs_relation_pkey">paragraphs_relation_pkey</a>
               </li>
               <li>
                 <a href="#definition-user_paragraph_history">user_paragraph_history</a>
@@ -84,6 +117,9 @@
               </li>
               <li>
                 <a href="#definition-user_paragraph_history_pkey">user_paragraph_history_pkey</a>
+              </li>
+              <li>
+                <a href="#definition-whereEq">whereEq</a>
               </li>
             </ul>
           </div>
@@ -162,8 +198,8 @@
                   <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"data"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
     <span class="hljs-attr">"getParagraphs"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
-      <span class="hljs-attr">"pid"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
-      <span class="hljs-attr">"title"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span>
+      <span class="hljs-attr">"pid"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"title"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span>
     <span class="hljs-punctuation">}</span>
   <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span>
@@ -209,8 +245,8 @@
                   <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"data"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
     <span class="hljs-attr">"getRelation"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
-      <span class="hljs-attr">"from"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
-      <span class="hljs-attr">"to"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span>
+      <span class="hljs-attr">"from"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"to"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span>
     <span class="hljs-punctuation">}</span>
   <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span>
@@ -221,7 +257,70 @@
             </div>
           </section>
           <h1 id="group-Operations-Mutations" class="group-heading" data-traverse-target="group-Operations-Mutations">Mutations</h1>
+          <section id="mutation-UpdateParagraphs" class="operation operation-mutation" data-traverse-target="mutation-UpdateParagraphs">
+            <h2 class="operation-heading "> <code>UpdateParagraphs</code> </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <div class="operation-description doc-copy-section">
+                  <h5>Description</h5>
+                  <p>パラグラフとリンクを更新</p>
+                </div>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <div class="operation-response doc-copy-section">
+                  <h5>Response</h5>
+                  <p> Returns an
+                    <a href="#definition-UpdateParagraphs"><code>UpdateParagraphs</code></a>
+                  </p>
+                </div>
+              </div>
+              <div class="doc-examples">
+                <h4 class="example-heading">Example</h4>
+                <div class="example-section example-section-is-code operation-query-example">
+                  <h5>Query</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol"><span class="hljs-keyword">mutation</span> UpdateParagraphs <span class="hljs-tag">{
+  <span class="hljs-symbol">UpdateParagraphs <span class="hljs-tag">{
+    <span class="hljs-symbol">delete_paragraphs_relation <span class="hljs-tag">{
+      <span class="hljs-type">...mutation_responseFragment</span>
+    }</span></span>
+    <span class="hljs-symbol">insert_paragraphs_one <span class="hljs-tag">{
+      <span class="hljs-type">...insert_paragraphs_one_responseFragment</span>
+    }</span></span>
+    <span class="hljs-symbol">insert_paragraphs_relation <span class="hljs-tag">{
+      <span class="hljs-type">...mutation_responseFragment</span>
+    }</span></span>
+  }</span></span>
+}</span></span>
+</code></pre> </body>
+                  </html>
+                </div>
+                <div class="example-section example-section-is-code operation-response-example">
+                  <h5>Response</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"data"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"UpdateParagraphs"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+      <span class="hljs-attr">"delete_paragraphs_relation"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">mutation_response</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"insert_paragraphs_one"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">insert_paragraphs_one_response</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"insert_paragraphs_relation"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">mutation_response</span>
+    <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre> </body>
+                  </html>
+                </div>
+              </div>
+            </div>
+          </section>
           <section id="mutation-insert_user_paragraph_history" class="operation operation-mutation" data-traverse-target="mutation-insert_user_paragraph_history">
+            <div class="operation-group-name">
+              <a href="#group-Operations-Mutations">Mutations</a>
+            </div>
             <h2 class="operation-heading "> <code>insert_user_paragraph_history</code> </h2>
             <div class="doc-row">
               <div class="doc-copy">
@@ -323,16 +422,7 @@
                   <p>The <code>Boolean</code> scalar type represents <code>true</code> or <code>false</code>.</p>
                 </div>
               </div>
-              <div class="doc-examples">
-                <div class="example-section example-section-is-code">
-                  <h5>Example</h5>
-                  <html>
-                  <head></head>
-                  <body><pre><code class="hljs language-json"><span class="hljs-keyword">true</span>
-</code></pre> </body>
-                  </html>
-                </div>
-              </div>
+              <div class="doc-examples"> </div>
             </div>
           </section>
           <section id="definition-Int" class="definition definition-scalar" data-traverse-target="definition-Int">
@@ -359,6 +449,128 @@
               </div>
             </div>
           </section>
+          <section id="definition-Paragraph" class="definition definition-input-object" data-traverse-target="definition-Paragraph">
+            <div class="definition-group-name">
+              <a href="#group-Types">Types</a>
+            </div>
+            <h2 class="definition-heading">Paragraph</h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <div class="definition-properties doc-copy-section">
+                  <h5>Fields</h5>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Input Field</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <span class="property-name"><code>paragraph</code></span> -
+                          <span class="property-type">
+                            <a href="#definition-String"><code>String</code></a>
+                          </span>
+                        </td>
+                        <td> </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <span class="property-name"><code>pid</code></span> -
+                          <span class="property-type">
+                            <a href="#definition-String"><code>String</code></a>
+                          </span>
+                        </td>
+                        <td> </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <span class="property-name"><code>title</code></span> -
+                          <span class="property-type">
+                            <a href="#definition-String"><code>String</code></a>
+                          </span>
+                        </td>
+                        <td> </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="doc-examples">
+                <div class="example-section example-section-is-code">
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"paragraph"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"pid"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"title"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span>
+<span class="hljs-punctuation">}</span>
+</code></pre> </body>
+                  </html>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="definition-Relation" class="definition definition-input-object" data-traverse-target="definition-Relation">
+            <div class="definition-group-name">
+              <a href="#group-Types">Types</a>
+            </div>
+            <h2 class="definition-heading">Relation</h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <div class="definition-properties doc-copy-section">
+                  <h5>Fields</h5>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Input Field</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <span class="property-name"><code>from</code></span> -
+                          <span class="property-type">
+                            <a href="#definition-String"><code>String</code></a>
+                          </span>
+                        </td>
+                        <td>
+                          <p>パラグラフID</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <span class="property-name"><code>to</code></span> -
+                          <span class="property-type">
+                            <a href="#definition-String"><code>String</code></a>
+                          </span>
+                        </td>
+                        <td>
+                          <p>パラグラフID</p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="doc-examples">
+                <div class="example-section example-section-is-code">
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"from"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"to"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span>
+<span class="hljs-punctuation">}</span>
+</code></pre> </body>
+                  </html>
+                </div>
+              </div>
+            </div>
+          </section>
           <section id="definition-String" class="definition definition-scalar" data-traverse-target="definition-String">
             <div class="definition-group-name">
               <a href="#group-Types">Types</a>
@@ -376,7 +588,330 @@
                   <h5>Example</h5>
                   <html>
                   <head></head>
-                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol">"xyz789"</span>
+                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol">"abc123"</span>
+</code></pre> </body>
+                  </html>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="definition-UpdateParagraphs" class="definition definition-object" data-traverse-target="definition-UpdateParagraphs">
+            <div class="definition-group-name">
+              <a href="#group-Types">Types</a>
+            </div>
+            <h2 class="definition-heading">UpdateParagraphs</h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <div class="definition-properties doc-copy-section">
+                  <h5>Fields</h5>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Field Name</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="row-has-field-arguments">
+                        <td data-property-name="">
+                          <span class="property-name"><code>delete_paragraphs_relation</code></span> -
+                          <span class="property-type">
+                            <a href="#definition-mutation_response"><code>mutation_response</code></a>
+                          </span>
+                        </td>
+                        <td> 更新前にリンクの削除 </td>
+                      </tr>
+                      <tr class="row-field-arguments">
+                        <td colspan="2">
+                          <div class="field-arguments">
+                            <h5 class="field-arguments-heading"> Arguments </h5>
+                            <div class="field-argument-list">
+                              <div class="field-argument">
+                                <h6 class="field-argument-name">
+                                  <span class="property-name"><code>where</code></span> -
+                                  <span class="property-type">
+                                    <a href="#definition-deleteWhere"><code>deleteWhere</code></a>
+                                  </span>
+                                </h6>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr class="row-has-field-arguments">
+                        <td data-property-name="">
+                          <span class="property-name"><code>insert_paragraphs_one</code></span> -
+                          <span class="property-type">
+                            <a href="#definition-insert_paragraphs_one_response"><code>insert_paragraphs_one_response</code></a>
+                          </span>
+                        </td>
+                        <td> パラグラフを更新 </td>
+                      </tr>
+                      <tr class="row-field-arguments">
+                        <td colspan="2">
+                          <div class="field-arguments">
+                            <h5 class="field-arguments-heading"> Arguments </h5>
+                            <div class="field-argument-list">
+                              <div class="field-argument">
+                                <h6 class="field-argument-name">
+                                  <span class="property-name"><code>on_conflict</code></span> -
+                                  <span class="property-type">
+                                    <a href="#definition-insert_paragraphs_one_on_conflict"><code>insert_paragraphs_one_on_conflict</code></a>
+                                  </span>
+                                </h6>
+                              </div>
+                              <div class="field-argument">
+                                <h6 class="field-argument-name">
+                                  <span class="property-name"><code>object</code></span> -
+                                  <span class="property-type">
+                                    <a href="#definition-Paragraph"><code>Paragraph</code></a>
+                                  </span>
+                                </h6>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr class="row-has-field-arguments">
+                        <td data-property-name="">
+                          <span class="property-name"><code>insert_paragraphs_relation</code></span> -
+                          <span class="property-type">
+                            <a href="#definition-mutation_response"><code>mutation_response</code></a>
+                          </span>
+                        </td>
+                        <td> リンクを挿入 </td>
+                      </tr>
+                      <tr class="row-field-arguments">
+                        <td colspan="2">
+                          <div class="field-arguments">
+                            <h5 class="field-arguments-heading"> Arguments </h5>
+                            <div class="field-argument-list">
+                              <div class="field-argument">
+                                <h6 class="field-argument-name">
+                                  <span class="property-name"><code>objects</code></span> -
+                                  <span class="property-type">
+                                    <a href="#definition-Relation"><code>[Relation]</code></a>
+                                  </span>
+                                </h6>
+                              </div>
+                              <div class="field-argument">
+                                <h6 class="field-argument-name">
+                                  <span class="property-name"><code>on_conflict</code></span> -
+                                  <span class="property-type">
+                                    <a href="#definition-insert_paragraphs_relation_onconflict"><code>insert_paragraphs_relation_onconflict</code></a>
+                                  </span>
+                                </h6>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="doc-examples">
+                <div class="example-section example-section-is-code">
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"delete_paragraphs_relation"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">mutation_response</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"insert_paragraphs_one"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">insert_paragraphs_one_response</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"insert_paragraphs_relation"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">mutation_response</span>
+<span class="hljs-punctuation">}</span>
+</code></pre> </body>
+                  </html>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="definition-deleteWhere" class="definition definition-input-object" data-traverse-target="definition-deleteWhere">
+            <div class="definition-group-name">
+              <a href="#group-Types">Types</a>
+            </div>
+            <h2 class="definition-heading">deleteWhere</h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <div class="definition-properties doc-copy-section">
+                  <h5>Fields</h5>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Input Field</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <span class="property-name"><code>from</code></span> -
+                          <span class="property-type">
+                            <a href="#definition-whereEq"><code>whereEq</code></a>
+                          </span>
+                        </td>
+                        <td> </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="doc-examples">
+                <div class="example-section example-section-is-code">
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span><span class="hljs-attr">"from"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">whereEq</span><span class="hljs-punctuation">}</span>
+</code></pre> </body>
+                  </html>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="definition-insert_paragraphs_one_on_conflict" class="definition definition-input-object" data-traverse-target="definition-insert_paragraphs_one_on_conflict">
+            <div class="definition-group-name">
+              <a href="#group-Types">Types</a>
+            </div>
+            <h2 class="definition-heading">insert_paragraphs_one_on_conflict</h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <div class="definition-properties doc-copy-section">
+                  <h5>Fields</h5>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Input Field</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <span class="property-name"><code>constraint</code></span> -
+                          <span class="property-type">
+                            <a href="#definition-paragraphs_pkey"><code>paragraphs_pkey</code></a>
+                          </span>
+                        </td>
+                        <td> </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <span class="property-name"><code>update_columns</code></span> -
+                          <span class="property-type">
+                            <a href="#definition-paragraph"><code>paragraph</code></a>
+                          </span>
+                        </td>
+                        <td> </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="doc-examples">
+                <div class="example-section example-section-is-code">
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"constraint"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">paragraphs_pkey</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"update_columns"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">paragraph</span>
+<span class="hljs-punctuation">}</span>
+</code></pre> </body>
+                  </html>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="definition-insert_paragraphs_one_response" class="definition definition-object" data-traverse-target="definition-insert_paragraphs_one_response">
+            <div class="definition-group-name">
+              <a href="#group-Types">Types</a>
+            </div>
+            <h2 class="definition-heading">insert_paragraphs_one_response</h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <div class="definition-properties doc-copy-section">
+                  <h5>Fields</h5>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Field Name</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td data-property-name="">
+                          <span class="property-name"><code>pid</code></span> -
+                          <span class="property-type">
+                            <a href="#definition-String"><code>String</code></a>
+                          </span>
+                        </td>
+                        <td> 挿入したパラグラフID </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="doc-examples">
+                <div class="example-section example-section-is-code">
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span><span class="hljs-attr">"pid"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">}</span>
+</code></pre> </body>
+                  </html>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="definition-insert_paragraphs_relation_onconflict" class="definition definition-input-object" data-traverse-target="definition-insert_paragraphs_relation_onconflict">
+            <div class="definition-group-name">
+              <a href="#group-Types">Types</a>
+            </div>
+            <h2 class="definition-heading">insert_paragraphs_relation_onconflict</h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <div class="definition-properties doc-copy-section">
+                  <h5>Fields</h5>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Input Field</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <span class="property-name"><code>constraint</code></span> -
+                          <span class="property-type">
+                            <a href="#definition-paragraphs_relation_pkey"><code>paragraphs_relation_pkey</code></a>
+                          </span>
+                        </td>
+                        <td> </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <span class="property-name"><code>update_columns</code></span> -
+                          <span class="property-type">
+                            <a href="#definition-String"><code>[String]</code></a>
+                          </span>
+                        </td>
+                        <td> </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="doc-examples">
+                <div class="example-section example-section-is-code">
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"constraint"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">paragraphs_relation_pkey</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"update_columns"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"abc123"</span><span class="hljs-punctuation">]</span>
+<span class="hljs-punctuation">}</span>
 </code></pre> </body>
                   </html>
                 </div>
@@ -419,6 +954,25 @@
                   <html>
                   <head></head>
                   <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span><span class="hljs-attr">"affected_rows"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">987</span><span class="hljs-punctuation">}</span>
+</code></pre> </body>
+                  </html>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="definition-paragraph" class="definition definition-scalar" data-traverse-target="definition-paragraph">
+            <div class="definition-group-name">
+              <a href="#group-Types">Types</a>
+            </div>
+            <h2 class="definition-heading">paragraph</h2>
+            <div class="doc-row">
+              <div class="doc-copy"> </div>
+              <div class="doc-examples">
+                <div class="example-section example-section-is-code">
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol">paragraph</span>
 </code></pre> </body>
                   </html>
                 </div>
@@ -471,8 +1025,27 @@
                   <head></head>
                   <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"pid"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">"title"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span>
+  <span class="hljs-attr">"title"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span>
 <span class="hljs-punctuation">}</span>
+</code></pre> </body>
+                  </html>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="definition-paragraphs_pkey" class="definition definition-scalar" data-traverse-target="definition-paragraphs_pkey">
+            <div class="definition-group-name">
+              <a href="#group-Types">Types</a>
+            </div>
+            <h2 class="definition-heading">paragraphs_pkey</h2>
+            <div class="doc-row">
+              <div class="doc-copy"> </div>
+              <div class="doc-examples">
+                <div class="example-section example-section-is-code">
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol">paragraphs_pkey</span>
 </code></pre> </body>
                   </html>
                 </div>
@@ -524,9 +1097,28 @@
                   <html>
                   <head></head>
                   <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
-  <span class="hljs-attr">"from"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">"to"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span>
+  <span class="hljs-attr">"from"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"to"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span>
 <span class="hljs-punctuation">}</span>
+</code></pre> </body>
+                  </html>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="definition-paragraphs_relation_pkey" class="definition definition-scalar" data-traverse-target="definition-paragraphs_relation_pkey">
+            <div class="definition-group-name">
+              <a href="#group-Types">Types</a>
+            </div>
+            <h2 class="definition-heading">paragraphs_relation_pkey</h2>
+            <div class="doc-row">
+              <div class="doc-copy"> </div>
+              <div class="doc-examples">
+                <div class="example-section example-section-is-code">
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol">paragraphs_relation_pkey</span>
 </code></pre> </body>
                   </html>
                 </div>
@@ -595,7 +1187,7 @@
                   <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"uid"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"pid"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">"moved_epoctime"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">987</span>
+  <span class="hljs-attr">"moved_epoctime"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">123</span>
 <span class="hljs-punctuation">}</span>
 </code></pre> </body>
                   </html>
@@ -651,7 +1243,7 @@
                   <head></head>
                   <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"constraint"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">user_paragraph_history_pkey</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">"update_columns"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"abc123"</span><span class="hljs-punctuation">]</span>
+  <span class="hljs-attr">"update_columns"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">]</span>
 <span class="hljs-punctuation">}</span>
 </code></pre> </body>
                   </html>
@@ -672,6 +1264,48 @@
                   <html>
                   <head></head>
                   <body><pre><code class="hljs language-gql"><span class="hljs-symbol">user_paragraph_history_pkey</span>
+</code></pre> </body>
+                  </html>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="definition-whereEq" class="definition definition-input-object" data-traverse-target="definition-whereEq">
+            <div class="definition-group-name">
+              <a href="#group-Types">Types</a>
+            </div>
+            <h2 class="definition-heading">whereEq</h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <div class="definition-properties doc-copy-section">
+                  <h5>Fields</h5>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Input Field</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <span class="property-name"><code>_eq</code></span> -
+                          <span class="property-type">
+                            <a href="#definition-String"><code>String</code></a>
+                          </span>
+                        </td>
+                        <td> </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="doc-examples">
+                <div class="example-section example-section-is-code">
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span><span class="hljs-attr">"_eq"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">}</span>
 </code></pre> </body>
                   </html>
                 </div>
