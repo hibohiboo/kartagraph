@@ -13,7 +13,7 @@
   "author": "hibohiboo <hibohiboo66+github@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "@redocly/openapi-cli": "^1.0.0-beta.92",
+    "@redocly/openapi-cli": "^1.0.0-beta.94",
     "redoc": "^2.0.0-rc.66",
     "redoc-cli": "^0.13.10"
   }
