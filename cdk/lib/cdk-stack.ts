@@ -150,7 +150,9 @@ export class AWSCarTaGraphClientStack extends core.Stack {
           request.uri = '/cartagraph-gamebook/index.html';
         } else if (request.uri.startsWith('/cartagraph-solo-journal-editor') && !request.uri.includes('.')){
           request.uri = '/cartagraph-solo-journal-editor/index.html';
-        }else if (!request.uri.includes('.')){
+        } else if (request.uri.startsWith('/cartagraph-solo-journal/') && !request.uri.includes('.')){
+          request.uri = '/cartagraph-solo-journal/index.html';
+        } else if (!request.uri.includes('.')){
           request.uri = '/cartagraph/index.html';
         } 
         return request;
@@ -209,6 +211,23 @@ export class AWSCarTaGraphClientStack extends core.Stack {
                 'x-api-key',
                 'content-type',
               ),
+            },
+          ),
+        },
+        'data/*': {
+          origin,
+          allowedMethods: cf.AllowedMethods.ALLOW_ALL,
+          viewerProtocolPolicy: cf.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+          cachePolicy: new cf.CachePolicy(
+            this,
+            `${distributionName}-data-cache-policy`,
+            {
+              cachePolicyName: `${distributionName}-data-cache-cache-policy`,
+              comment: 'CloudFront データ部用ポリシー',
+              defaultTtl: core.Duration.seconds(0),
+              maxTtl: core.Duration.seconds(10),
+              // minTtl: core.Duration.seconds(0),
+              headerBehavior: cf.CacheHeaderBehavior.allowList('content-type'),
             },
           ),
         },
