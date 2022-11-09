@@ -144,25 +144,30 @@ export class AWSCarTaGraphClientStack extends core.Stack {
       code: cf.FunctionCode.fromInline(`
       function handler(event) {
         var request = event.request;
-        if(request.uri.startsWith('/cartagraph-editor') && !request.uri.includes('.')) {
+        if(request.uri.includes('.')){
+          return request;
+        }
+        if(request.uri.startsWith('/cartagraph-editor')) {
           request.uri = '/cartagraph-editor/index.html';
-        } else if(request.uri.startsWith('/cartagraph-gamebook') && !request.uri.includes('.')) {
+        } else if(request.uri.startsWith('/cartagraph-gamebook')) {
           request.uri = '/cartagraph-gamebook/index.html';
-        } else if (request.uri.startsWith('/cartagraph-solo-journal-editor') && !request.uri.includes('.')){
+        } else if (request.uri.startsWith('/cartagraph-solo-journal-editor')){
           request.uri = '/cartagraph-solo-journal-editor/index.html';
-        } else if (request.uri.startsWith('/cartagraph-solo-journal/') && !request.uri.includes('.')){
+        } else if (request.uri.startsWith('/cartagraph-solo-journal/')){
           request.uri = '/cartagraph-solo-journal/index.html';
-        } else if (request.uri.startsWith('/loop-city-trpg/') && !request.uri.includes('.')){
+        } else if (request.uri.startsWith('/loop-city-trpg/')){
           request.uri = '/loop-city-trpg/index.html';
-        } else if (request.uri.startsWith('/cartagraph-1hour-games/') && !request.uri.includes('.')){
+        } else if (request.uri.startsWith('/cartagraph-1hour-games/')){
           request.uri = '/cartagraph-1hour-games/index.html';
-        } else if (request.uri.startsWith('/cartagraph-udonarium/') && !request.uri.includes('.')){
+        } else if (request.uri.startsWith('/cartagraph-udonarium/')){
           request.uri = '/cartagraph-udonarium/udonarium/index.html';
-        } else if (request.uri.startsWith('/sosaku-mura/') && !request.uri.includes('.')){
+        } else if (request.uri.startsWith('/sosaku-mura/')){
           request.uri = '/sosaku-mura/index.html';
-        } else if (request.uri.startsWith('/friends-sold-separately/') && !request.uri.includes('.')){
+        } else if (request.uri.startsWith('/friends-sold-separately/')){
           request.uri = '/friends-sold-separately/index.html';
-        } else if (!request.uri.includes('.')){
+        } else if (request.uri.startsWith('/friends-shakehand/')){
+          request.uri = '/friends-shakehand/index.html';
+        } else {
           request.uri = '/cartagraph/index.html';
         } 
         return request;
