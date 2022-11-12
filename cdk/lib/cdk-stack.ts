@@ -220,8 +220,8 @@ export class AWSCarTaGraphClientStack extends core.Stack {
               cachePolicyName: `${distributionName}-rest-api-cache-policy`,
               comment: 'CloudFront + ApiGateway用ポリシー',
               defaultTtl: core.Duration.seconds(0),
-              maxTtl: core.Duration.seconds(0),
-              minTtl: core.Duration.seconds(0),
+              maxTtl: core.Duration.seconds(10),
+              // minTtl: core.Duration.seconds(0),
               headerBehavior: cf.CacheHeaderBehavior.allowList(
                 'x-api-key',
                 'content-type',
