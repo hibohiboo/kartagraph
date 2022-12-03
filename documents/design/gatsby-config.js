@@ -32,7 +32,21 @@ module.exports = {
         // Plugins configs
         plugins: [
           `gatsby-remark-autolink-headers`,
-          "gatsby-remark-mermaid",
+          {
+            resolve: `gatsby-remark-mermaid`,
+            options: {
+              launchOptions: {
+                executablePath: "path/to/chrome/executable",
+              },
+              svgo: {
+                plugins: [{ name: "removeTitle", active: false }],
+              },
+              mermaidOptions: {
+                theme: "neutral",
+                themeCSS: ".node rect { fill: #fff; }",
+              },
+            },
+          },
         ],
       },
     },
