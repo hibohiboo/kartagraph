@@ -165,13 +165,13 @@ export class AWSCarTaGraphClientStack extends core.Stack {
           request.uri = '/cartagraph-udonarium-lily/udonarium_lily/index.html';
         } else if (request.uri.startsWith('/cartagraph-udonarium-with-fly/')){
           request.uri = '/cartagraph-udonarium-with-fly/udonarium/index.html';
-        } else if (request.uri.startsWith('/sosaku-mura/')){
+        } else if (request.uri.startsWith('/sosaku-mura')){
           request.uri = '/sosaku-mura/index.html';
-        } else if (request.uri.startsWith('/friends-sold-separately/')){
+        } else if (request.uri.startsWith('/friends-sold-separately')){
           request.uri = '/friends-sold-separately/index.html';
-        } else if (request.uri.startsWith('/friends-shakehand/')){
+        } else if (request.uri.startsWith('/friends-shakehand')){
           request.uri = '/friends-shakehand/index.html';
-        } else if (request.uri.startsWith('/rooper-udonarium/')){
+        } else if (request.uri.startsWith('/rooper-udonarium')){
           request.uri = '/rooper-udonarium/udonarium/index.html';
         } else {
           request.uri = '/cartagraph/index.html';

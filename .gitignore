@@ -33,3 +33,5 @@ storybook-static
 
 .env
 /src
+
+*.bkp
