@@ -89,20 +89,20 @@ jobs:
             --output=docs/index.html
             documents/index.md
 
-# component catalog
+# # component catalog
 
-      - name: StoryBook Setup
-        run: npm ci
-        working-directory: ./documents/components-catalog
+#       - name: StoryBook Setup
+#         run: npm ci
+#         working-directory: ./documents/components-catalog
 
-      - name: StoryBook Make
-        run: npx build-storybook -c ./.storybook -o ./components-catalog
-        working-directory: ./documents/components-catalog
+#       - name: StoryBook Make
+#         run: npx build-storybook -c ./.storybook -o ./components-catalog
+#         working-directory: ./documents/components-catalog
 
-      - name: StoryBook Move files
-        run: |
-          mkdir -p ./docs/publish/components-catalog
-          mv ./documents/components-catalog/components-catalog ./docs/publish/
+#       - name: StoryBook Move files
+#         run: |
+#           mkdir -p ./docs/publish/components-catalog
+#           mv ./documents/components-catalog/components-catalog ./docs/publish/
 
 
 # デプロイ
