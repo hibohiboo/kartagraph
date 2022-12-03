@@ -69,18 +69,18 @@ jobs:
 
 # markdown to HTML
 # Gatsby
-      - name: Gatsby Setup
-        run: npm ci
-        working-directory: ./documents/design
+      # - name: Gatsby Setup
+      #   run: npm ci
+      #   working-directory: ./documents/design
 
-      - name: Gatsby Make
-        run: npm run build
-        working-directory: ./documents/design
+      # - name: Gatsby Make
+      #   run: npm run build
+      #   working-directory: ./documents/design
 
-      - name: Gatsby Move files
-        run: |
-          mkdir -p ./docs/publish
-          mv ./documents/design/public ./docs/publish/design
+      # - name: Gatsby Move files
+      #   run: |
+      #     mkdir -p ./docs/publish
+      #     mv ./documents/design/public ./docs/publish/design
 # pandoc
       - uses: docker://pandoc/core:2.18
         with:
