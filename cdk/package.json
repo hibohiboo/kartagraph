@@ -10,22 +10,23 @@
     "cdk": "cdk",
     "bundle": "cdk synth > cdk.out/template.yml",
     "pipeline-deploy": "cdk deploy --require-approval never --all",
+    "predeploy": "node build.js",
     "deploy": "cdk deploy aws-cartagraph-stack aws-cartagraph-deploy-stack --profile produser"
   },
   "devDependencies": {
-    "@aws-cdk/assert": "2.50.0",
-    "@types/aws-lambda": "^8.10.108",
-    "@types/node": "18.11.9",
-    "aws-cdk": "2.50.0",
+    "@aws-cdk/assert": "2.54.0",
+    "@types/aws-lambda": "^8.10.109",
+    "@types/node": "18.11.14",
+    "aws-cdk": "2.54.0",
     "dotenv": "^16.0.3",
-    "esbuild": "^0.15.14",
-    "npm-check-updates": "^16.4.1",
+    "esbuild": "^0.16.4",
+    "npm-check-updates": "^16.5.6",
     "ts-node": "^10.9.1",
-    "typescript": "~4.8.4"
+    "typescript": "~4.9.4"
   },
   "dependencies": {
-    "aws-cdk-lib": "^2.50.0",
-    "constructs": "^10.1.160",
+    "aws-cdk-lib": "^2.54.0",
+    "constructs": "^10.1.188",
     "source-map-support": "^0.5.21"
   }
 }
