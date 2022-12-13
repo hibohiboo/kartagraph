@@ -8,6 +8,7 @@ import * as origins from 'aws-cdk-lib/aws-cloudfront-origins'
 import * as route53 from 'aws-cdk-lib/aws-route53'
 import * as route53Targets from 'aws-cdk-lib/aws-route53-targets'
 import * as certManager from 'aws-cdk-lib/aws-certificatemanager'
+import * as lambda from 'aws-cdk-lib/aws-lambda'
 import { Construct } from 'constructs'
 
 interface Props extends core.StackProps {
@@ -189,6 +190,7 @@ export class AWSCarTaGraphClientStack extends core.Stack {
       0,
       core.Fn.split('/', apiEndPointUrlWithoutProtocol),
     )
+    const lambdaEdge = this.createLambdaEdge()
     const d = new cf.Distribution(this, distributionName, {
       // enableIpV6: true,
       // httpVersion: cf.HttpVersion.HTTP2,
@@ -251,6 +253,17 @@ export class AWSCarTaGraphClientStack extends core.Stack {
               headerBehavior: cf.CacheHeaderBehavior.allowList('content-type'),
             },
           ),
+        },
+        'friends-shakehand/gallery/*': {
+          origin,
+          viewerProtocolPolicy: cf.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+          edgeLambdas: [
+            {
+              eventType: cf.LambdaEdgeEventType.VIEWER_REQUEST,
+              functionVersion: lambdaEdge.currentVersion,
+              includeBody: true,
+            },
+          ],
         },
       },
 
@@ -335,5 +348,15 @@ export class AWSCarTaGraphClientStack extends core.Stack {
     }
     new route53.ARecord(this, 'ARecord', propsForRoute53Records)
     new route53.AaaaRecord(this, 'AaaaRecord', propsForRoute53Records)
+  }
+
+  private createLambdaEdge() {
+    const f = new cf.experimental.EdgeFunction(this, 'lambda-edge', {
+      code: lambda.Code.fromAsset('dist/ogp'),
+      handler: 'index.handler',
+      runtime: lambda.Runtime.NODEJS_18_X,
+    })
+    core.Tags.of(f).add('Service', 'Lambda@Edge')
+    return f
   }
 }
