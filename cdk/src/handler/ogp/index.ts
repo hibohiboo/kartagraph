@@ -45,7 +45,7 @@ export const handler: CloudFrontRequestHandler = async (event) => {
   const userAgent = request.headers['user-agent'][0].value
   const isBotAccess = bots.some((bot) => userAgent.includes(bot))
   if (!isBotAccess) {
-    request.uri = '/friends-sold-separately/index.html'
+    request.uri = '/friends-shakehand/index.html'
     return request
   }
 
