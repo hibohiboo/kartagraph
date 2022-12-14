@@ -351,7 +351,7 @@ export class AWSCarTaGraphClientStack extends core.Stack {
   }
 
   private createLambdaEdge() {
-    const f = new cf.experimental.EdgeFunction(this, 'lambda-edge', {
+    const f = new cf.experimental.EdgeFunction(this, 'cdk-lambda-edge', {
       code: lambda.Code.fromAsset('dist/ogp'),
       handler: 'index.handler',
       runtime: lambda.Runtime.NODEJS_18_X,
