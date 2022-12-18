@@ -174,6 +174,8 @@ export class AWSCarTaGraphClientStack extends core.Stack {
           request.uri = '/friends-shakehand/index.html';
         } else if (request.uri.startsWith('/rooper-udonarium')){
           request.uri = '/rooper-udonarium/udonarium/index.html';
+        } else if (request.uri.startsWith('/mobile-udonarium')){
+          request.uri = '/mobile-udonarium/index.html';
         } else {
           request.uri = '/cartagraph/index.html';
         } 
