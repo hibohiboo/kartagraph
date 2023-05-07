@@ -21,7 +21,8 @@
     "build": "tsc && vite build",
     "test": "jest",
     "test-watch": "jest --watchAll",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "export-eslint": "eslint --print-config client/src/index.ts > eslint-setting.json"
   },
   "eslintConfig": {
     "extends": [
