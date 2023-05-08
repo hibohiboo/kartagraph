@@ -199,6 +199,62 @@ export class AWSCarTaGraphClientStack extends core.Stack {
       core.Fn.split('/', apiEndPointUrlWithoutProtocol),
     )
     const lambdaEdge = this.createLambdaEdge()
+    const responseHeadersPolicy = this.createResponseHeadersPolicy()
+    const additionalBehaviors = {
+      'v1/*': {
+        origin: new origins.HttpOrigin(apiEndPointDomainName, {
+          // originPath: `/v1`,
+          customHeaders: {
+            'x-api-key': props.apiKey,
+          },
+        }),
+        allowedMethods: cf.AllowedMethods.ALLOW_ALL,
+        viewerProtocolPolicy: cf.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+        cachePolicy: new cf.CachePolicy(
+          this,
+          `${distributionName}-rest-api-cache-policy`,
+          {
+            cachePolicyName: `${distributionName}-rest-api-cache-policy`,
+            comment: 'CloudFront + ApiGateway用ポリシー',
+            defaultTtl: core.Duration.seconds(0),
+            maxTtl: core.Duration.seconds(10),
+            // minTtl: core.Duration.seconds(0),
+            headerBehavior: cf.CacheHeaderBehavior.allowList(
+              'x-api-key',
+              'content-type',
+            ),
+          },
+        ),
+      },
+      'data/*': {
+        origin,
+        allowedMethods: cf.AllowedMethods.ALLOW_ALL,
+        viewerProtocolPolicy: cf.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+        cachePolicy: new cf.CachePolicy(
+          this,
+          `${distributionName}-data-cache-policy`,
+          {
+            cachePolicyName: `${distributionName}-data-cache-cache-policy`,
+            comment: 'CloudFront データ部用ポリシー',
+            defaultTtl: core.Duration.seconds(0),
+            maxTtl: core.Duration.seconds(10),
+            // minTtl: core.Duration.seconds(0),
+            headerBehavior: cf.CacheHeaderBehavior.allowList('content-type'),
+          },
+        ),
+      },
+      'friends-shakehand/gallery/*': {
+        origin,
+        viewerProtocolPolicy: cf.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+        edgeLambdas: [
+          {
+            eventType: cf.LambdaEdgeEventType.VIEWER_REQUEST,
+            functionVersion: lambdaEdge.currentVersion,
+            includeBody: true,
+          },
+        ],
+      },
+    }
     const d = new cf.Distribution(this, distributionName, {
       // enableIpV6: true,
       // httpVersion: cf.HttpVersion.HTTP2,
@@ -212,6 +268,7 @@ export class AWSCarTaGraphClientStack extends core.Stack {
         // cachedMethods: cf.CachedMethods.CACHE_GET_HEAD,
         cachePolicy: myCachePolicy,
         viewerProtocolPolicy: cf.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+        responseHeadersPolicy,
         functionAssociations: [
           {
             eventType: cf.FunctionEventType.VIEWER_REQUEST,
@@ -219,61 +276,7 @@ export class AWSCarTaGraphClientStack extends core.Stack {
           },
         ],
       },
-      additionalBehaviors: {
-        'v1/*': {
-          origin: new origins.HttpOrigin(apiEndPointDomainName, {
-            // originPath: `/v1`,
-            customHeaders: {
-              'x-api-key': props.apiKey,
-            },
-          }),
-          allowedMethods: cf.AllowedMethods.ALLOW_ALL,
-          viewerProtocolPolicy: cf.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
-          cachePolicy: new cf.CachePolicy(
-            this,
-            `${distributionName}-rest-api-cache-policy`,
-            {
-              cachePolicyName: `${distributionName}-rest-api-cache-policy`,
-              comment: 'CloudFront + ApiGateway用ポリシー',
-              defaultTtl: core.Duration.seconds(0),
-              maxTtl: core.Duration.seconds(10),
-              // minTtl: core.Duration.seconds(0),
-              headerBehavior: cf.CacheHeaderBehavior.allowList(
-                'x-api-key',
-                'content-type',
-              ),
-            },
-          ),
-        },
-        'data/*': {
-          origin,
-          allowedMethods: cf.AllowedMethods.ALLOW_ALL,
-          viewerProtocolPolicy: cf.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
-          cachePolicy: new cf.CachePolicy(
-            this,
-            `${distributionName}-data-cache-policy`,
-            {
-              cachePolicyName: `${distributionName}-data-cache-cache-policy`,
-              comment: 'CloudFront データ部用ポリシー',
-              defaultTtl: core.Duration.seconds(0),
-              maxTtl: core.Duration.seconds(10),
-              // minTtl: core.Duration.seconds(0),
-              headerBehavior: cf.CacheHeaderBehavior.allowList('content-type'),
-            },
-          ),
-        },
-        'friends-shakehand/gallery/*': {
-          origin,
-          viewerProtocolPolicy: cf.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
-          edgeLambdas: [
-            {
-              eventType: cf.LambdaEdgeEventType.VIEWER_REQUEST,
-              functionVersion: lambdaEdge.currentVersion,
-              includeBody: true,
-            },
-          ],
-        },
-      },
+      additionalBehaviors,
 
       // errorResponses: [
       //   {
@@ -290,7 +293,7 @@ export class AWSCarTaGraphClientStack extends core.Stack {
       //   },
       // ],
       // 2021.09.05 GUIコンソール上の推奨とCDKのデフォルト値がずれていたので明示
-      minimumProtocolVersion: cf.SecurityPolicyProtocol.TLS_V1_2_2021,
+      // minimumProtocolVersion: cf.SecurityPolicyProtocol.TLS_V1_2_2021,
       // Route53と連携するためのカスタムドメイン
       certificate: cert,
       domainNames: [deployDomain],
@@ -298,6 +301,60 @@ export class AWSCarTaGraphClientStack extends core.Stack {
     core.Tags.of(d).add('Service', 'Cloud Front')
 
     return d
+  }
+
+  // HSTSの設定。ウェブサイトがブラウザーに HTTP の代わりに HTTPS を用いて通信を行うよう指示する。
+  // https://qiita.com/ockeghem/items/c6a3602d2c2409f89fbb
+  // https://dev.classmethod.jp/articles/build-cloudfront-distribution-with-the-aws-cdk-with-aws-cdk/
+  private createResponseHeadersPolicy() {
+    const responseHeadersPolicy = new cf.ResponseHeadersPolicy(
+      this,
+      'ResponseHeadersPolicy',
+      {
+        securityHeadersBehavior: {
+          contentTypeOptions: { override: true },
+          frameOptions: {
+            frameOption: cf.HeadersFrameOption.DENY,
+            override: true,
+          },
+          referrerPolicy: {
+            referrerPolicy: cf.HeadersReferrerPolicy.SAME_ORIGIN,
+            override: true,
+          },
+          strictTransportSecurity: {
+            accessControlMaxAge: core.Duration.seconds(63072000),
+            includeSubdomains: true,
+            preload: true,
+            override: true,
+          },
+          xssProtection: {
+            protection: true,
+            modeBlock: true,
+            override: true,
+          },
+        },
+        customHeadersBehavior: {
+          customHeaders: [
+            {
+              header: 'Cache-Control',
+              value: 'no-cache',
+              override: true,
+            },
+            {
+              header: 'pragma',
+              value: 'no-cache',
+              override: true,
+            },
+            {
+              header: 'server',
+              value: '',
+              override: true,
+            },
+          ],
+        },
+      },
+    )
+    return responseHeadersPolicy
   }
 
   // private deployS3(
