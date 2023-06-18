@@ -314,7 +314,7 @@ export class AWSCarTaGraphClientStack extends core.Stack {
         securityHeadersBehavior: {
           contentTypeOptions: { override: true },
           frameOptions: {
-            frameOption: cf.HeadersFrameOption.DENY,
+            frameOption: cf.HeadersFrameOption.SAMEORIGIN,
             override: true,
           },
           referrerPolicy: {
